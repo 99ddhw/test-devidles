@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+.wrangler/
+*.log
+
+# wrangler 인증 토큰·로컬 빌드 캐시
+.dev.vars
+.env
+.env.local

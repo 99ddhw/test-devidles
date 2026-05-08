@@ -1,0 +1,29 @@
+# Cloudflare Workers Static Assets에 업로드하지 않을 파일들
+# (메타·문서·설정·OS 캐시는 배포 대상에서 제외)
+
+# Git
+.git/
+.gitignore
+
+# 메타·문서
+CLAUDE.md
+LICENSE
+README.md
+*.md
+
+# 설정
+wrangler.jsonc
+wrangler.toml
+.assetsignore
+package.json
+package-lock.json
+node_modules/
+
+# 빌드·캐시
+.wrangler/
+.DS_Store
+*.log
+
+# 에디터
+.vscode/
+.idea/

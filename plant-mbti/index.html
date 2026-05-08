@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>식물 MBTI 테스트 — 당신은 어떤 식물의 영혼을 가지고 있을까?</title>
+<meta name="description" content="12문항으로 알아보는 식물 MBTI. 16가지 식물 중 당신의 영혼과 가장 가까운 식물은? 무료, 1분 완료, 결과 SNS 공유." />
+<meta name="keywords" content="식물 MBTI, MBTI 테스트, 심리테스트, 식물 테스트, 다육이 영혼, 플랜테리어 테스트, 무료 심리테스트" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://test.devidles.com/plant-mbti/" />
+<link rel="alternate" hreflang="ko" href="https://test.devidles.com/plant-mbti/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="식물 MBTI" />
+<meta property="og:url" content="https://test.devidles.com/plant-mbti/" />
+<meta property="og:title" content="식물 MBTI 테스트 — 당신은 어떤 식물?" />
+<meta property="og:description" content="12문항 1분 완료. 16가지 식물 중 당신의 영혼은?" />
+<meta property="og:image" content="https://test.devidles.com/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="식물 MBTI 테스트" />
+<meta name="twitter:description" content="당신은 어떤 식물의 영혼을 가지고 있을까? 12문항 1분 완료." />
+<meta name="twitter:image" content="https://test.devidles.com/og.png" />
+
+<meta name="theme-color" content="#15121e" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E🌿%3C/text%3E%3C/svg%3E" />
+
+<!-- Search Console / Naver verification (test.devidles.com용 토큰 발급 후 교체) -->
+<!-- <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_TOKEN" /> -->
+<!-- <meta name="naver-site-verification" content="REPLACE_WITH_NAVER_TOKEN" /> -->
+
+<!-- Kakao AdFit SDK (test.devidles.com 도메인으로 단위 ID 신규 발급 후 교체) -->
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-head">
+  <a href="/" class="logo">🧠 심리테스트</a>
+  <nav>
+    <a href="/">테스트 목록</a>
+    <a href="https://plant.devidles.com" target="_blank" rel="noopener">🎮 게임</a>
+    <a href="/about/">소개</a>
+  </nav>
+</header>
+
+<div class="page-title-strip">
+  <span class="page-emoji">🌿</span> <strong>식물 MBTI</strong>
+</div>
+
+<!-- AdFit 상단 -->
+<div class="ad-top">
+  <ins class="kakao_ad_area" style="display:none;"
+       data-ad-unit="DAN-PLANT-MBTI-TOP"
+       data-ad-width="320"
+       data-ad-height="100"></ins>
+</div>
+
+<main>
+  <!-- INTRO 화면 -->
+  <section id="screen-intro" class="screen active">
+    <div class="hero">
+      <div class="hero-emoji">🌱</div>
+      <h1>당신은 어떤 식물의 영혼을 가지고 있을까?</h1>
+      <p class="lede">12개의 질문으로 알아보는 <strong>식물 MBTI 테스트</strong>. 16가지 식물 중 당신과 가장 가까운 영혼을 찾아드립니다. 약 1분 소요, 무료, 회원가입 불필요.</p>
+      <button id="btn-start" class="btn-primary">테스트 시작 →</button>
+      <p class="hero-meta">🌿 16종의 식물 결과 · 📊 4가지 성향 분석 · 💬 SNS 공유 가능</p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feat-icon">🪴</div>
+        <h3>16가지 식물</h3>
+        <p>분재·다육이·해바라기·라벤더 등 16종 중 당신의 영혼과 매칭</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">⚡</div>
+        <h3>1분이면 끝</h3>
+        <p>12문항, 직관적 선택지. 부담 없이 가볍게.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🎨</div>
+        <h3>예쁜 결과 카드</h3>
+        <p>인스타·트위터에 바로 공유할 수 있는 결과 이미지</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ 화면 -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <div id="progress-text" class="progress-text">1 / 12</div>
+    </div>
+    <h2 id="q-text" class="q-text"></h2>
+    <div id="answer-list" class="answer-list"></div>
+    <button id="btn-back" class="btn-back" type="button">← 이전 질문</button>
+  </section>
+
+  <!-- RESULT 화면 -->
+  <section id="screen-result" class="screen">
+    <div class="result-card" id="result-card">
+      <div class="result-emoji" id="result-emoji">🌵</div>
+      <p class="result-mbti" id="result-mbti">ISTJ</p>
+      <h2 class="result-name" id="result-name">선인장</h2>
+      <p class="result-tagline" id="result-tagline"></p>
+      <p class="result-desc" id="result-desc"></p>
+      <div class="result-traits" id="result-traits"></div>
+      <div class="result-stats" id="result-stats"></div>
+      <div class="result-block">
+        <h4>✨ 강점</h4>
+        <p id="result-strengths"></p>
+      </div>
+      <div class="result-block">
+        <h4>🌧 약점</h4>
+        <p id="result-weaknesses"></p>
+      </div>
+      <div class="result-block">
+        <h4>💞 잘 맞는 식물</h4>
+        <p id="result-compat"></p>
+      </div>
+    </div>
+
+    <div class="share-row">
+      <button id="btn-share-x" class="btn-share">𝕏 트위터 공유</button>
+      <button id="btn-share-kakao" class="btn-share">💬 카카오톡</button>
+      <button id="btn-share-copy" class="btn-share">🔗 링크 복사</button>
+    </div>
+
+    <!-- AdFit 하단 -->
+    <div class="ad-mid">
+      <ins class="kakao_ad_area" style="display:none;"
+           data-ad-unit="DAN-PLANT-MBTI-MID"
+           data-ad-width="300"
+           data-ad-height="250"></ins>
+    </div>
+
+    <div class="cross-promo">
+      <h3>🎮 식물을 직접 키워보고 싶다면?</h3>
+      <p>씨앗에서 행성까지 — 무료 방치형 식물 진화 게임. 회원가입 없이 바로 시작.</p>
+      <a href="https://plant.devidles.com" class="btn-primary" target="_blank" rel="noopener">Idle Plant 플레이 →</a>
+    </div>
+
+    <button id="btn-restart" class="btn-restart">↻ 테스트 다시 하기</button>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>© 2026 심리테스트 · <a href="/">테스트 목록</a> · <a href="https://plant.devidles.com" target="_blank" rel="noopener">게임</a> · <a href="/about/">소개</a> · <a href="/contact/">문의</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a></p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ========== 12 질문 ==========
+  const QUESTIONS = [
+    { dim: 'EI', text: '정원 파티에 초대받았다. 당신은?',
+      a: ['사람들과 식물 이야기로 들떠 있다', 'E'],
+      b: ['한 켠에서 조용히 식물만 둘러본다', 'I'] },
+    { dim: 'EI', text: '새 화분을 사면 가장 먼저?',
+      a: ['SNS에 자랑 사진부터 올린다', 'E'],
+      b: ['며칠 혼자 관찰하며 적응을 본다', 'I'] },
+    { dim: 'EI', text: '식물 모임이 있다면 더 끌리는 쪽은?',
+      a: ['사람 많은 큰 모임이 즐겁다', 'E'],
+      b: ['소수가 깊게 이야기 나누는 모임', 'I'] },
+
+    { dim: 'NS', text: '새 식물을 보면 머릿속에 먼저 떠오르는 것은?',
+      a: ['1년 후 자라난 모습이 그려진다', 'N'],
+      b: ['지금 잎의 색·모양이 먼저 들어온다', 'S'] },
+    { dim: 'NS', text: '식물 책을 펼쳤을 때 더 흥미로운 부분은?',
+      a: ['진화·생태계 같은 큰 그림', 'N'],
+      b: ['구체적인 키우기 팁과 사례', 'S'] },
+    { dim: 'NS', text: '"꿈의 정원"을 설계한다면 시작은?',
+      a: ['컨셉과 분위기부터 떠올린다', 'N'],
+      b: ['실제 공간 크기·햇빛부터 잰다', 'S'] },
+
+    { dim: 'TF', text: '키우던 식물이 시들었다. 당신의 첫 반응은?',
+      a: ['원인을 분석한다 (물·햇빛·온도)', 'T'],
+      b: ['"미안해..." 마음이 먼저 아프다', 'F'] },
+    { dim: 'TF', text: '친구가 식물 키우기 실패담을 토로한다.',
+      a: ['무엇이 잘못됐는지 짚어준다', 'T'],
+      b: ['우선 위로하고 공감부터 한다', 'F'] },
+    { dim: 'TF', text: '꽃집 직원이 친절하지만 정보가 잘못되었다.',
+      a: ['정확한 정보를 알려준다', 'T'],
+      b: ['분위기 깨지 않으려 그냥 듣는다', 'F'] },
+
+    { dim: 'JP', text: '물주기는 어떻게?',
+      a: ['정해진 요일·시간에 규칙적으로', 'J'],
+      b: ['흙 상태 보고 그때그때', 'P'] },
+    { dim: 'JP', text: '식물 구입은?',
+      a: ['미리 리서치한 후 결정', 'J'],
+      b: ['끌리는 걸 즉흥적으로 구매', 'P'] },
+    { dim: 'JP', text: '분갈이 일정은?',
+      a: ['캘린더에 적어두고 지킨다', 'J'],
+      b: ['"오늘 시간 나니 해볼까" 즉흥', 'P'] }
+  ];
+
+  // ========== 16 결과 ==========
+  const RESULTS = {
+    INTJ: { name: '분재', emoji: '🪴', color: '#4a8a6a',
+      tagline: '수십 년의 비전으로 한 그루를 완성하는 전략가',
+      desc: '오랜 시간 끈기 있게 다듬어 자신만의 형태를 만드는 분재처럼, 당신은 장기적 비전과 정밀한 실행을 중요시합니다.',
+      traits: ['장기적 비전', '인내심', '정밀함', '미니멀'],
+      strengths: '시작한 일을 끝까지 다듬어 완성합니다. 큰 그림을 보면서도 디테일을 놓치지 않는 드문 균형.',
+      weaknesses: '완벽을 추구하다 실행이 늦어지거나, 타인의 즉흥적 제안을 받아들이기 어려울 수 있습니다.',
+      compat: '🍅 토마토 (ENTP) · 🌼 야생화 (ENFP)' },
+    INTP: { name: '식충식물', emoji: '🪤', color: '#6a8a4a',
+      tagline: '독특한 메커니즘에 매료되는 사색가',
+      desc: '평범하지 않은 방식으로 살아가는 식충식물처럼, 당신은 호기심을 자극하는 시스템과 논리를 사랑합니다.',
+      traits: ['호기심', '독창성', '분석적', '비범함'],
+      strengths: '아무도 묻지 않은 질문을 던지고, 누구도 시도하지 않은 답을 찾아냅니다.',
+      weaknesses: '관심사 외의 일상은 뒷전이 되기 쉽고, 결정을 미루다 기회를 놓칠 수 있습니다.',
+      compat: '🎋 대나무 (ENTJ) · 🌳 떡갈나무 (ESTJ)' },
+    ENTJ: { name: '대나무', emoji: '🎋', color: '#5da57a',
+      tagline: '한번 터지면 누구도 막을 수 없는 폭풍 성장',
+      desc: '땅속에서 오래 준비하다 폭발적으로 자라는 대나무처럼, 당신은 결단의 순간 모든 것을 밀어붙입니다.',
+      traits: ['추진력', '전략', '리더십', '강인함'],
+      strengths: '목표를 정하면 가장 효율적인 길을 찾아내고, 사람들을 이끄는 자연스러운 영향력이 있습니다.',
+      weaknesses: '속도가 다른 사람을 답답해할 수 있고, 감정보다 효율을 우선해 차갑게 보일 때가 있습니다.',
+      compat: '💜 라벤더 (INFP) · 🪤 식충식물 (INTP)' },
+    ENTP: { name: '토마토', emoji: '🍅', color: '#d96a5a',
+      tagline: '어디서나 잘 자라는 다재다능 변종 부자',
+      desc: '수백 가지 품종이 있는 토마토처럼, 당신은 다양한 가능성을 탐색하고 변주하는 즐거움을 압니다.',
+      traits: ['적응력', '다양성', '실험정신', '활달'],
+      strengths: '새로운 아이디어를 끊임없이 만들어내고, 어떤 환경에 던져놔도 활로를 찾습니다.',
+      weaknesses: '한 가지에 집중해 끝맺기 어렵고, 토론을 좋아하다 상대를 피곤하게 만들 수 있습니다.',
+      compat: '🪴 분재 (INTJ) · 🪷 연꽃 (INFJ)' },
+    INFJ: { name: '연꽃', emoji: '🪷', color: '#c878b8',
+      tagline: '흙탕물에서도 빛나는 신비로운 영혼',
+      desc: '진흙 속에서 청정하게 피어나는 연꽃처럼, 당신은 어려운 환경에서도 자신만의 깊이를 잃지 않습니다.',
+      traits: ['통찰력', '깊이', '우아함', '영적'],
+      strengths: '사람과 상황의 본질을 꿰뚫어보고, 말하지 않은 것까지 읽어냅니다.',
+      weaknesses: '내면에 너무 많은 것을 담아두다 지치기 쉽고, 이상과 현실의 차이에 자주 실망합니다.',
+      compat: '🍅 토마토 (ENTP) · 🌼 야생화 (ENFP)' },
+    INFP: { name: '라벤더', emoji: '💜', color: '#b888d8',
+      tagline: '조용히 향기로 세상을 위로하는 존재',
+      desc: '눈에 띄지 않게 피어 깊은 향기로 사람을 머물게 하는 라벤더처럼, 당신은 따뜻함과 진정성으로 곁을 채웁니다.',
+      traits: ['공감력', '향기로움', '평화', '진정성'],
+      strengths: '진심으로 사람을 위로하는 능력이 있고, 자신만의 가치관을 굳건히 지킵니다.',
+      weaknesses: '비판에 깊이 상처받고, 현실적 결정 앞에서 흔들리기 쉽습니다.',
+      compat: '🎋 대나무 (ENTJ) · 🌻 해바라기 (ENFJ)' },
+    ENFJ: { name: '해바라기', emoji: '🌻', color: '#f5c43a',
+      tagline: '주변을 환하게 만드는 햇빛 추종자',
+      desc: '하루 종일 해를 따라가며 빛을 모으는 해바라기처럼, 당신은 주변 사람을 향해 시선과 마음을 보냅니다.',
+      traits: ['따뜻함', '리더십', '영감', '열정'],
+      strengths: '사람을 끌어당기는 매력과, 모두를 한 방향으로 이끄는 자연스러운 카리스마.',
+      weaknesses: '타인의 기대에 과도하게 맞추다 자신을 잃을 수 있고, 거절을 어려워합니다.',
+      compat: '💜 라벤더 (INFP) · 💜 제비꽃 (ISFP)' },
+    ENFP: { name: '야생화', emoji: '🌼', color: '#f5a85a',
+      tagline: '어디든 피어나는 자유로운 영혼',
+      desc: '돌담 틈에서도, 길가에서도 망설임 없이 피어나는 야생화처럼, 당신은 자유롭고 활기찬 에너지로 어디에서나 살아갑니다.',
+      traits: ['자유', '활기', '다양성', '모험'],
+      strengths: '어디서든 즐거움을 찾아내고, 사람들의 가능성을 발견해 격려합니다.',
+      weaknesses: '한 곳에 오래 머무르기 힘들고, 시작한 것을 끝맺기까지 에너지가 부족할 때가 있습니다.',
+      compat: '🪴 분재 (INTJ) · 🪷 연꽃 (INFJ)' },
+    ISTJ: { name: '선인장', emoji: '🌵', color: '#5a8a5a',
+      tagline: '묵묵히 사막에서도 살아남는 강인함',
+      desc: '극한의 환경에서도 자기 페이스를 잃지 않는 선인장처럼, 당신은 어려운 상황에서도 흔들리지 않는 신뢰를 줍니다.',
+      traits: ['인내', '자립', '신뢰', '책임감'],
+      strengths: '약속을 지키고, 맡은 일은 끝까지 책임집니다. 위기에 가장 믿음직한 사람.',
+      weaknesses: '변화에 적응하는 데 시간이 걸리고, 감정 표현이 서툴러 오해받을 수 있습니다.',
+      compat: '🌷 튤립 (ESFP) · 🌿 바질 (ESTP)' },
+    ISFJ: { name: '다육이', emoji: '🪴', color: '#88b070',
+      tagline: '조용히 보살피며 곁을 지키는 친구',
+      desc: '물 한 모금만 잘 줘도 오래 곁을 지키는 다육이처럼, 당신은 따뜻하고 충실한 보살핌으로 관계를 이어갑니다.',
+      traits: ['보살핌', '따뜻함', '충실', '섬세'],
+      strengths: '사람의 작은 변화를 알아차리고, 조용히 필요한 것을 챙겨줍니다. 가장 든든한 동행자.',
+      weaknesses: '자기 표현이 부족해 손해 보기 쉽고, 거절을 못해 지칠 수 있습니다.',
+      compat: '🌿 바질 (ESTP) · 🌷 튤립 (ESFP)' },
+    ESTJ: { name: '떡갈나무', emoji: '🌳', color: '#7a6a4a',
+      tagline: '튼튼하게 버텨주는 든든한 기둥',
+      desc: '수백 년을 버티며 숲의 기준이 되는 떡갈나무처럼, 당신은 흔들리지 않는 책임감으로 사람들의 기둥이 됩니다.',
+      traits: ['책임감', '안정', '전통', '강인함'],
+      strengths: '체계와 질서를 만들고, 위기에 가장 빨리 행동합니다. 신뢰의 대명사.',
+      weaknesses: '경직된 규칙에 매달려 유연성을 잃을 수 있고, 감정적 미묘함을 놓치기 쉽습니다.',
+      compat: '💜 제비꽃 (ISFP) · 💜 라벤더 (INFP)' },
+    ESFJ: { name: '장미', emoji: '🌹', color: '#e85a7a',
+      tagline: '사람들을 끌어모으는 사교적인 매력',
+      desc: '누구에게나 사랑받는 장미처럼, 당신은 사람들 사이에서 자연스럽게 중심이 되고 분위기를 만듭니다.',
+      traits: ['매력', '헌신', '사교', '따뜻함'],
+      strengths: '관계를 잘 다듬고, 모임을 화기애애하게 이끕니다. 가장 인기 많은 친구.',
+      weaknesses: '평가에 민감하고, 타인의 인정에 자존감이 흔들리기 쉽습니다.',
+      compat: '💜 제비꽃 (ISFP) · 🌿 알로에 (ISTP)' },
+    ISTP: { name: '알로에', emoji: '🌿', color: '#6a9a7a',
+      tagline: '필요할 때 정확히 도움이 되는 실용주의',
+      desc: '베이거나 화상을 입었을 때 즉시 효능을 발휘하는 알로에처럼, 당신은 위기에 가장 침착하고 유능합니다.',
+      traits: ['실용', '차분함', '효율', '자립'],
+      strengths: '문제 앞에서 가장 침착하고, 손으로 해결하는 일에 강합니다. 만능 트러블슈터.',
+      weaknesses: '감정 대화를 어려워하고, 장기 계획보다 당장의 흥미를 따르기 쉽습니다.',
+      compat: '🌹 장미 (ESFJ) · 🌻 해바라기 (ENFJ)' },
+    ISFP: { name: '제비꽃', emoji: '💜', color: '#9a7ab8',
+      tagline: '조용히 자신만의 색을 피우는',
+      desc: '눈에 띄지 않는 곳에서도 진한 보라로 피어나는 제비꽃처럼, 당신은 자신만의 미감과 진정성으로 살아갑니다.',
+      traits: ['섬세', '예술', '진정성', '자유'],
+      strengths: '아름다움과 진심을 알아보고, 말 없이도 깊이 있는 연결을 만들어냅니다.',
+      weaknesses: '갈등을 회피하다 손해를 보고, 자기 주장이 약해 묻히기 쉽습니다.',
+      compat: '🌳 떡갈나무 (ESTJ) · 🌻 해바라기 (ENFJ)' },
+    ESTP: { name: '바질', emoji: '🌿', color: '#7ab85a',
+      tagline: '어디에 두어도 활기차게 자라는 활용성',
+      desc: '베란다든 부엌이든 잘 자라며 모든 음식을 살리는 바질처럼, 당신은 어떤 상황에서도 활력을 만들어냅니다.',
+      traits: ['활기', '적응', '실용', '즉흥'],
+      strengths: '순간 판단이 빠르고, 누구든 무엇이든 활용해 결과를 만듭니다.',
+      weaknesses: '깊이 있는 사색이 어렵고, 인내가 필요한 일에 빠르게 지칩니다.',
+      compat: '🪴 다육이 (ISFJ) · 🌵 선인장 (ISTJ)' },
+    ESFP: { name: '튤립', emoji: '🌷', color: '#f570a0',
+      tagline: '봄을 알리는 화려한 등장',
+      desc: '한 시즌을 통째로 자기 색으로 물들이는 튤립처럼, 당신은 어디에 있든 그 자리의 분위기를 만듭니다.',
+      traits: ['화려함', '활발', '즐거움', '사교'],
+      strengths: '분위기를 띄우고, 일상에 색을 입히는 천재. 함께 있으면 즐거워집니다.',
+      weaknesses: '깊은 슬픔을 마주하기 어려워하고, 즐거움이 사라진 환경에서 빠르게 시들 수 있습니다.',
+      compat: '🌵 선인장 (ISTJ) · 🪴 다육이 (ISFJ)' }
+  };
+
+  // ========== 상태 ==========
+  let currentQ = 0;
+  const scores = { E: 0, I: 0, N: 0, S: 0, T: 0, F: 0, J: 0, P: 0 };
+  const history = []; // 이전 질문 답변 기록 (뒤로가기용)
+
+  const $ = (id) => document.getElementById(id);
+  const showScreen = (id) => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  // ========== 시작 ==========
+  $('btn-start').addEventListener('click', () => {
+    currentQ = 0;
+    history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    showScreen('screen-quiz');
+    renderQuestion();
+  });
+
+  // ========== 질문 렌더 ==========
+  function renderQuestion() {
+    const q = QUESTIONS[currentQ];
+    $('q-text').textContent = q.text;
+    $('progress-text').textContent = `${currentQ + 1} / ${QUESTIONS.length}`;
+    $('progress-fill').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+
+    const list = $('answer-list');
+    list.innerHTML = '';
+    [['a', q.a], ['b', q.b]].forEach(([key, [text, type]]) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.type = 'button';
+      btn.textContent = text;
+      btn.addEventListener('click', () => answer(type));
+      list.appendChild(btn);
+    });
+
+    $('btn-back').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
+  }
+
+  function answer(type) {
+    scores[type]++;
+    history.push(type);
+    currentQ++;
+    if (currentQ >= QUESTIONS.length) {
+      finish();
+    } else {
+      renderQuestion();
+    }
+  }
+
+  $('btn-back').addEventListener('click', () => {
+    if (currentQ === 0) return;
+    currentQ--;
+    const lastType = history.pop();
+    if (lastType) scores[lastType]--;
+    renderQuestion();
+  });
+
+  // ========== 결과 ==========
+  function calculateMBTI() {
+    return (scores.E >= scores.I ? 'E' : 'I') +
+           (scores.N >= scores.S ? 'N' : 'S') +
+           (scores.T >= scores.F ? 'T' : 'F') +
+           (scores.J >= scores.P ? 'J' : 'P');
+  }
+
+  function finish() {
+    const mbti = calculateMBTI();
+    const r = RESULTS[mbti];
+    $('result-mbti').textContent = mbti;
+    $('result-name').textContent = r.name;
+    $('result-emoji').textContent = r.emoji;
+    $('result-tagline').textContent = r.tagline;
+    $('result-desc').textContent = r.desc;
+    $('result-strengths').textContent = r.strengths;
+    $('result-weaknesses').textContent = r.weaknesses;
+    $('result-compat').textContent = r.compat;
+    $('result-card').style.setProperty('--card-color', r.color);
+
+    const traits = $('result-traits');
+    traits.innerHTML = '';
+    r.traits.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'trait-pill';
+      span.textContent = t;
+      traits.appendChild(span);
+    });
+
+    // 4가지 차원 점수 그래프
+    const stats = $('result-stats');
+    stats.innerHTML = '';
+    [
+      ['E', '외향', 'I', '내향'],
+      ['N', '직관', 'S', '감각'],
+      ['T', '사고', 'F', '감정'],
+      ['J', '판단', 'P', '인식']
+    ].forEach(([l, ln, r, rn]) => {
+      const total = scores[l] + scores[r];
+      const lp = total > 0 ? Math.round((scores[l] / total) * 100) : 50;
+      const rp = 100 - lp;
+      const dominant = lp >= rp ? l : r;
+      const row = document.createElement('div');
+      row.className = 'stat-row';
+      row.innerHTML = `
+        <div class="stat-labels">
+          <span class="${dominant === l ? 'dominant' : ''}">${ln} ${lp}%</span>
+          <span class="${dominant === r ? 'dominant' : ''}">${rp}% ${rn}</span>
+        </div>
+        <div class="stat-bar">
+          <div class="stat-fill stat-l" style="width:${lp}%"></div>
+          <div class="stat-fill stat-r" style="width:${rp}%"></div>
+        </div>
+      `;
+      stats.appendChild(row);
+    });
+
+    // URL 해시에 결과 저장 (공유 시 직접 결과 페이지)
+    history && (window.location.hash = mbti);
+    document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 식물 MBTI`;
+
+    showScreen('screen-result');
+
+    // AdFit slot 새로 로드 트리거 (이미 로드된 슬롯은 재요청 안 됨, 신규 슬롯만)
+    if (window.adfit && window.adfit.display) {
+      try { window.adfit.display('DAN-PLANT-MBTI-MID'); } catch (e) {}
+    }
+  }
+
+  // ========== 공유 ==========
+  $('btn-share-x').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    const r = RESULTS[mbti];
+    const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n식물 MBTI 테스트로 알아보세요`;
+    const url = `https://test.devidles.com/plant-mbti/#${mbti}`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  });
+
+  $('btn-share-kakao').addEventListener('click', () => {
+    // 카카오톡 공유는 SDK 필요 — SDK 미로드 시 링크 복사로 폴백
+    const mbti = calculateMBTI();
+    const url = `https://test.devidles.com/plant-mbti/#${mbti}`;
+    if (navigator.share) {
+      navigator.share({
+        title: `식물 MBTI: ${RESULTS[mbti].name} (${mbti})`,
+        text: RESULTS[mbti].tagline,
+        url
+      }).catch(() => copyLink(url));
+    } else {
+      copyLink(url);
+    }
+  });
+
+  $('btn-share-copy').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    copyLink(`https://test.devidles.com/plant-mbti/#${mbti}`);
+  });
+
+  function copyLink(url) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => toast('링크가 복사되었습니다 ✓'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); toast('링크가 복사되었습니다 ✓'); }
+      catch (e) { toast('복사 실패. URL을 직접 복사해주세요.'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.classList.add('show'), 10);
+    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2000);
+  }
+
+  // ========== 재시작 ==========
+  $('btn-restart').addEventListener('click', () => {
+    currentQ = 0;
+    history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    window.location.hash = '';
+    document.title = '식물 MBTI 테스트 — 당신은 어떤 식물의 영혼을 가지고 있을까?';
+    showScreen('screen-intro');
+  });
+
+  // ========== 해시로 직접 결과 페이지 진입 (공유 링크) ==========
+  function checkHashResult() {
+    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
+    if (RESULTS[hash]) {
+      // 임시 점수 부여하여 결과 출력
+      Object.keys(scores).forEach(k => scores[k] = 0);
+      [...hash].forEach((ch, i) => {
+        scores[ch] = 3;
+        const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
+        scores[opp] = 0;
+      });
+      finish();
+    }
+  }
+  window.addEventListener('hashchange', checkHashResult);
+  checkHashResult();
+})();
+</script>
+</body>
+</html>
