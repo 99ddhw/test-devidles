@@ -219,20 +219,40 @@ main {
   background: var(--panel);
   color: var(--text);
   border: 1.5px solid var(--line);
-  padding: 18px 20px;
+  padding: 14px 18px;
   border-radius: 12px;
   font-size: 15.5px;
-  line-height: 1.5;
+  line-height: 1.45;
   text-align: left;
   transition: all 0.15s;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
+.answer-btn .answer-intensity {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.answer-btn--strong {
+  border-width: 2px;
+  padding-top: 13px;
+}
+.answer-btn--strong .answer-intensity { color: var(--accent); }
 .answer-btn:hover {
   border-color: var(--accent-2);
   background: var(--panel-2);
   transform: translateY(-1px);
 }
 .answer-btn:active { transform: translateY(1px); }
+/* 두 측면 사이 시각적 분리 (mild B 위에 얇은 라인) */
+.answer-list .answer-btn[data-side="b"]:first-of-type {
+  margin-top: 4px;
+}
 
 .btn-back {
   background: transparent;

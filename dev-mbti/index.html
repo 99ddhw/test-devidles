@@ -380,21 +380,28 @@
 
     const list = $('answer-list');
     list.innerHTML = '';
-    [['a', q.a], ['b', q.b]].forEach(([key, [text, type]]) => {
+    const opts = [
+      { side: 'a', weight: 2, text: q.a[0], type: q.a[1], intensity: '정말 그렇다' },
+      { side: 'a', weight: 1, text: q.a[0], type: q.a[1], intensity: '어느 정도 그렇다' },
+      { side: 'b', weight: 1, text: q.b[0], type: q.b[1], intensity: '어느 정도 그렇다' },
+      { side: 'b', weight: 2, text: q.b[0], type: q.b[1], intensity: '정말 그렇다' }
+    ];
+    opts.forEach(opt => {
       const btn = document.createElement('button');
-      btn.className = 'answer-btn';
+      btn.className = `answer-btn answer-btn--${opt.weight === 2 ? 'strong' : 'mild'}`;
       btn.type = 'button';
-      btn.textContent = text;
-      btn.addEventListener('click', () => answer(type));
+      btn.dataset.side = opt.side;
+      btn.innerHTML = `<span class="answer-intensity">${opt.intensity}</span>${opt.text}`;
+      btn.addEventListener('click', () => answer(opt.type, opt.weight));
       list.appendChild(btn);
     });
 
     $('btn-back').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
   }
 
-  function answer(type) {
-    scores[type]++;
-    history.push(type);
+  function answer(type, weight) {
+    scores[type] += weight;
+    history.push({ type, weight });
     currentQ++;
     if (currentQ >= QUESTIONS.length) finish();
     else renderQuestion();
@@ -403,8 +410,8 @@
   $('btn-back').addEventListener('click', () => {
     if (currentQ === 0) return;
     currentQ--;
-    const lastType = history.pop();
-    if (lastType) scores[lastType]--;
+    const last = history.pop();
+    if (last) scores[last.type] -= last.weight;
     renderQuestion();
   });
 
@@ -510,7 +517,7 @@
     if (code) {
       Object.keys(scores).forEach(k => scores[k] = 0);
       [...code].forEach((ch) => {
-        scores[ch] = 4;
+        scores[ch] = 8; // 4 문항 × 가중치 2 = max
         const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
         scores[opp] = 0;
       });
