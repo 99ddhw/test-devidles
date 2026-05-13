@@ -4,26 +4,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repo purpose
 
-`test.devidles.com` — a Korean-first **multi-test psychology portal**.
-The root is a hub listing all available tests; each test lives in its
-own subdirectory. Part of the `devidles.com` portal alongside
-`plant.devidles.com` (Idle Plant Evolution game).
+`devidles.com/test/` — a Korean-first **multi-test psychology portal**.
+The `/test/` root is a hub listing all available tests; each test
+lives in its own subdirectory under `/test/`. Migrated from the legacy
+`test.devidles.com` subdomain to a path under the apex
+`devidles.com` portal (sibling sites: `/plant`, `/slime`, `/wave`).
 
 Currently launched:
-- 🌿 **식물 MBTI** at `/plant-mbti/` — 12 questions → 16 plants
+- 🌿 **식물 MBTI** at `/test/plant-mbti/` — 12 questions → 16 plants
 
 Planned (placeholders on hub):
-- 💻 개발자 유형 (`/dev-mbti/`)
-- 🌵 다육이 영혼 (`/succulent-soul/`)
-- 🎨 색깔 심리 (`/color-mind/`)
-- 🐾 동물 성격 (`/animal-type/`)
+- 💻 개발자 유형 (`/test/dev-mbti/`)
+- 🌵 다육이 영혼 (`/test/succulent-soul/`)
+- 🎨 색깔 심리 (`/test/color-mind/`)
+- 🐾 동물 성격 (`/test/animal-type/`)
 
 ## Hosting and deploy
 
 - Cloudflare Workers Static Assets (NOT Pages — same pattern as
-  `idle-plant`).
-- Custom domain `test.devidles.com` via Cloudflare Registrar
-  (`devidles.com` already owned, just add subdomain in Custom Domains).
+  `idle-plant` and other devidles repos).
+- Path-based route `devidles.com/test/*` registered in
+  `wrangler.{toml,jsonc}` — intercepts the apex portal's catch-all by
+  route specificity. `worker.js` strips the `/test` prefix and
+  forwards to `env.ASSETS.fetch`; policy paths (`/test/about`, etc.)
+  301-redirect to the apex.
 - **Deploy is not automatic from `git push`.** Run `wrangler deploy`
   (or whatever the user has configured) after committing.
 
@@ -43,15 +47,15 @@ test-devidles/
 └── CLAUDE.md
 ```
 
-When adding a new test (e.g., `/dev-mbti/`):
+When adding a new test (e.g., `/test/dev-mbti/`):
 
 1. Create directory `dev-mbti/`
 2. Copy `plant-mbti/index.html` as scaffold
 3. Replace QUESTIONS array (12 items, 3 per E/I/N/S/T/F/J/P)
 4. Replace RESULTS dict (16 MBTI keys)
-5. Update head meta tags (canonical, og:url, title)
+5. Update head meta tags (canonical = `https://devidles.com/test/dev-mbti/`, og:url, title)
 6. Update header `.page-title-strip` text and emoji
-7. Update share URLs (`/dev-mbti/#${mbti}`)
+7. Update share URLs (`/test/dev-mbti/#${mbti}`)
 8. Update AdFit DAN unit IDs (e.g., `DAN-DEV-MBTI-TOP/MID`)
 9. Add card to root `index.html` test grid (move from coming-soon to available)
 10. Add entry to `sitemap.xml`
@@ -85,38 +89,50 @@ Display ads only — Kakao AdFit. Each location gets a unique DAN unit:
 - Per-test: `DAN-PLANT-MBTI-TOP`, `DAN-PLANT-MBTI-MID` (etc.)
 
 Replace placeholder DAN IDs with real units issued for
-`test.devidles.com` from the Kakao AdFit dashboard. Do not reuse
-`plant.devidles.com` units — that violates AdFit policy (one unit per
-domain/page combination is the safe convention).
+`devidles.com/test/` (or per-test paths) from the Kakao AdFit
+dashboard. Do not reuse sibling sites' units — one unit per
+domain/page combination is the safe convention. Path-prefix migration
+doesn't change this: AdFit treats unique DAN per slot.
 
 **No rewarded ads** — same policy as the sibling sites. Result reveal
 is unconditional.
 
 ## URL / SEO maintenance
 
+Canonical / og:url = `https://devidles.com/test/` (hub) and
+`https://devidles.com/test/<test>/` (per-test). The legacy
+`test.devidles.com` subdomain has been retired.
+
 When the deploy URL changes (or new tests added), update **all of
 these in one pass**:
 
 - Root `index.html` head: canonical, og:url, og:image, twitter:image
 - Each test `<test>/index.html` head: same set
-- `about/`, `contact/`, `privacy/`, `terms/` head + content references
 - `sitemap.xml`
 - `robots.txt`
 - Internal anchors (footer, hub test grid links, cross-promo)
+- Policy pages now live at the apex (`devidles-landing` repo). Do not
+  maintain copies under `/test`.
 
-Verify with: `grep -rln "<old-url>" --include="*.html"
+Verify with: `grep -rln "test.devidles.com" --include="*.html"
 --include="*.xml" --include="*.txt"` — count should be zero.
 
 ## Privacy / Terms architecture
 
-**One policy covers the entire domain** (all current and future tests).
+**One policy covers the entire `devidles.com` domain** (all current
+and future tests, plus sibling sites like `/plant`, `/wave`, `/slime`).
+Policy pages now live at the apex in the `devidles-landing` repo —
+this repo's `worker.js` 301-redirects `/test/about`, `/test/privacy`,
+etc. to the root.
+
 Privacy mentions answers are memory-only; terms 제7조 has the MBTI®
 non-affiliation disclaimer that applies to ALL tests on the site. Do
 not split into per-test policies — that's regulatory bloat.
 
 When adding a new test:
 - If it has unique data handling (e.g., uploads images, calls an API),
-  add a paragraph to privacy under the relevant section.
+  add a paragraph to the apex privacy page (in `devidles-landing`)
+  under the relevant section.
 - Otherwise: do nothing — existing policy already covers it.
 
 ## Korean conventional commits
@@ -150,25 +166,29 @@ the disclaimer in terms 제7조 already covers it — no need to duplicate.
 ## Cross-promo
 
 Every test's result screen ends with a CTA card linking to
-`https://plant.devidles.com` (Idle Plant Evolution). The portal hub
+`https://devidles.com/plant/` (Idle Plant Evolution). The portal hub
 also has a cross-promo section. Keep these links live and visible —
 they are the primary funnel from the test portal back to the sister
 game site for ad-revenue cross-monetization.
 
+Cross-promo links use the path form, not the legacy subdomain.
+
 ## Things to avoid
 
-- Splitting into per-test repos — keep one repo, one domain, one
-  shared policy.
+- Splitting into per-test repos — keep one repo, one path mount, one
+  shared policy at the apex.
+- Re-introducing the legacy `test.devidles.com` subdomain URL — the
+  canonical form is `devidles.com/test/`.
 - Adding `package.json` / build tooling — single-file vanilla JS is
   the convention.
 - Adding rewarded-ad gating to result reveal — policy decision: result
   is always free.
 - Saving test answers to localStorage / cookies / server — privacy
   policy explicitly states answers are memory-only. Don't break this.
-- Reusing AdFit DAN IDs across pages or with the sibling
-  `plant.devidles.com` site.
-- Removing the MBTI® non-affiliation disclaimer in terms 제7조.
+- Reusing AdFit DAN IDs across pages or with sibling devidles sites.
+- Removing the MBTI® non-affiliation disclaimer from the apex terms
+  page (it covers this repo too).
 - Importing third-party trackers (Google Analytics, etc.) without
-  updating `privacy/index.html`.
-- Putting individual tests' privacy/terms in their own subdirectories
-  — single domain-wide policy is the convention.
+  updating the apex privacy page.
+- Maintaining policy pages here — they live at the apex
+  (`devidles-landing`); child workers should 301-redirect.
