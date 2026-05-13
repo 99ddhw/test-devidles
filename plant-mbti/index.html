@@ -418,7 +418,7 @@
     });
 
     // URL 해시에 결과 저장 (공유 시 직접 결과 페이지)
-    history && (window.location.hash = mbti);
+    try { window.history.replaceState(null, '', `?r=${mbti}`); } catch (e) {}
     document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 식물 MBTI`;
 
     showScreen('screen-result');
@@ -429,14 +429,14 @@
     const mbti = calculateMBTI();
     const r = RESULTS[mbti];
     const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n식물 MBTI 테스트로 알아보세요`;
-    const url = `https://devidles.com/test/plant-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/plant-mbti/?r=${mbti}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   });
 
   $('btn-share-kakao').addEventListener('click', () => {
     // 카카오톡 공유는 SDK 필요 — SDK 미로드 시 링크 복사로 폴백
     const mbti = calculateMBTI();
-    const url = `https://devidles.com/test/plant-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/plant-mbti/?r=${mbti}`;
     if (navigator.share) {
       navigator.share({
         title: `식물 MBTI: ${RESULTS[mbti].name} (${mbti})`,
@@ -450,7 +450,7 @@
 
   $('btn-share-copy').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    copyLink(`https://devidles.com/test/plant-mbti/#${mbti}`);
+    copyLink(`https://devidles.com/test/plant-mbti/?r=${mbti}`);
   });
 
   function copyLink(url) {
@@ -481,18 +481,20 @@
     currentQ = 0;
     history.length = 0;
     Object.keys(scores).forEach(k => scores[k] = 0);
-    window.location.hash = '';
+    try { window.history.replaceState(null, '', window.location.pathname); } catch (e) {}
     document.title = '식물 MBTI 테스트 — 당신은 어떤 식물의 영혼을 가지고 있을까?';
     showScreen('screen-intro');
   });
 
-  // ========== 해시로 직접 결과 페이지 진입 (공유 링크) ==========
-  function checkHashResult() {
-    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
-    if (RESULTS[hash]) {
-      // 임시 점수 부여하여 결과 출력
+  // ========== ?r=XXXX 또는 #XXXX 로 직접 결과 페이지 진입 (공유 링크) ==========
+  function checkResultParam() {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = (params.get('r') || '').toUpperCase();
+    const fromHash = (window.location.hash || '').replace('#', '').toUpperCase();
+    const code = RESULTS[fromQuery] ? fromQuery : (RESULTS[fromHash] ? fromHash : null);
+    if (code) {
       Object.keys(scores).forEach(k => scores[k] = 0);
-      [...hash].forEach((ch, i) => {
+      [...code].forEach((ch) => {
         scores[ch] = 3;
         const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
         scores[opp] = 0;
@@ -500,8 +502,9 @@
       finish();
     }
   }
-  window.addEventListener('hashchange', checkHashResult);
-  checkHashResult();
+  window.addEventListener('hashchange', checkResultParam);
+  window.addEventListener('popstate', checkResultParam);
+  checkResultParam();
 })();
 </script>
 </body>

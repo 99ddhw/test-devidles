@@ -428,7 +428,7 @@
       stats.appendChild(row);
     });
 
-    history && (window.location.hash = mbti);
+    try { window.history.replaceState(null, '', `?r=${mbti}`); } catch (e) {}
     document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 색깔 심리`;
     showScreen('screen-result');
   }
@@ -436,13 +436,13 @@
   $('btn-share-x').addEventListener('click', () => {
     const mbti = calculateMBTI(); const r = RESULTS[mbti];
     const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n나의 색깔 심리 테스트로 알아보세요`;
-    const url = `https://devidles.com/test/color-mind/#${mbti}`;
+    const url = `https://devidles.com/test/color-mind/?r=${mbti}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   });
 
   $('btn-share-kakao').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    const url = `https://devidles.com/test/color-mind/#${mbti}`;
+    const url = `https://devidles.com/test/color-mind/?r=${mbti}`;
     if (navigator.share) {
       navigator.share({ title: `나의 색깔: ${RESULTS[mbti].name} (${mbti})`, text: RESULTS[mbti].tagline, url })
         .catch(() => copyLink(url));
@@ -451,7 +451,7 @@
 
   $('btn-share-copy').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    copyLink(`https://devidles.com/test/color-mind/#${mbti}`);
+    copyLink(`https://devidles.com/test/color-mind/?r=${mbti}`);
   });
 
   function copyLink(url) {
@@ -477,16 +477,20 @@
   $('btn-restart').addEventListener('click', () => {
     currentQ = 0; history.length = 0;
     Object.keys(scores).forEach(k => scores[k] = 0);
-    window.location.hash = '';
+    try { window.history.replaceState(null, '', window.location.pathname); } catch (e) {}
     document.title = '나의 색깔 심리 테스트 — 당신을 닮은 색은?';
     showScreen('screen-intro');
   });
 
-  function checkHashResult() {
-    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
-    if (RESULTS[hash]) {
+  // ?r=XXXX(공유 링크) 또는 #XXXX(구 버전) 로 직접 결과 페이지 진입
+  function checkResultParam() {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = (params.get('r') || '').toUpperCase();
+    const fromHash = (window.location.hash || '').replace('#', '').toUpperCase();
+    const code = RESULTS[fromQuery] ? fromQuery : (RESULTS[fromHash] ? fromHash : null);
+    if (code) {
       Object.keys(scores).forEach(k => scores[k] = 0);
-      [...hash].forEach((ch) => {
+      [...code].forEach((ch) => {
         scores[ch] = 4;
         const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
         scores[opp] = 0;
@@ -494,8 +498,9 @@
       finish();
     }
   }
-  window.addEventListener('hashchange', checkHashResult);
-  checkHashResult();
+  window.addEventListener('hashchange', checkResultParam);
+  window.addEventListener('popstate', checkResultParam);
+  checkResultParam();
 })();
 </script>
 </body>

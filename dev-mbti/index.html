@@ -459,7 +459,7 @@
       stats.appendChild(row);
     });
 
-    history && (window.location.hash = mbti);
+    try { window.history.replaceState(null, '', `?r=${mbti}`); } catch (e) {}
     document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 개발자 MBTI`;
 
     showScreen('screen-result');
@@ -469,13 +469,13 @@
     const mbti = calculateMBTI();
     const r = RESULTS[mbti];
     const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n개발자 MBTI 테스트로 알아보세요`;
-    const url = `https://devidles.com/test/dev-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/dev-mbti/?r=${mbti}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   });
 
   $('btn-share-kakao').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    const url = `https://devidles.com/test/dev-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/dev-mbti/?r=${mbti}`;
     if (navigator.share) {
       navigator.share({ title: `개발자 MBTI: ${RESULTS[mbti].name} (${mbti})`, text: RESULTS[mbti].tagline, url })
         .catch(() => copyLink(url));
@@ -484,7 +484,7 @@
 
   $('btn-share-copy').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    copyLink(`https://devidles.com/test/dev-mbti/#${mbti}`);
+    copyLink(`https://devidles.com/test/dev-mbti/?r=${mbti}`);
   });
 
   function copyLink(url) {
@@ -510,16 +510,20 @@
   $('btn-restart').addEventListener('click', () => {
     currentQ = 0; history.length = 0;
     Object.keys(scores).forEach(k => scores[k] = 0);
-    window.location.hash = '';
+    try { window.history.replaceState(null, '', window.location.pathname); } catch (e) {}
     document.title = '개발자 유형 MBTI 테스트 — 당신은 어떤 개발자?';
     showScreen('screen-intro');
   });
 
-  function checkHashResult() {
-    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
-    if (RESULTS[hash]) {
+  // ?r=XXXX(공유 링크) 또는 #XXXX(구 버전) 로 직접 결과 페이지 진입
+  function checkResultParam() {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = (params.get('r') || '').toUpperCase();
+    const fromHash = (window.location.hash || '').replace('#', '').toUpperCase();
+    const code = RESULTS[fromQuery] ? fromQuery : (RESULTS[fromHash] ? fromHash : null);
+    if (code) {
       Object.keys(scores).forEach(k => scores[k] = 0);
-      [...hash].forEach((ch) => {
+      [...code].forEach((ch) => {
         scores[ch] = 4;
         const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
         scores[opp] = 0;
@@ -527,8 +531,9 @@
       finish();
     }
   }
-  window.addEventListener('hashchange', checkHashResult);
-  checkHashResult();
+  window.addEventListener('hashchange', checkResultParam);
+  window.addEventListener('popstate', checkResultParam);
+  checkResultParam();
 })();
 </script>
 </body>
