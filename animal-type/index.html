@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>동물 성격 MBTI 테스트 — 당신은 어떤 동물?</title>
+<meta name="description" content="16문항으로 알아보는 동물 성격. 늑대·여우·돌고래·고양이 등 16가지 동물 매칭. 서식·사회성·궁합 동물 분석 포함. 무료, 1분 완료." />
+<meta name="keywords" content="동물 MBTI, 동물 성격 테스트, 동물 매칭, 무료 심리테스트, 늑대 여우 부엉이, 16가지 동물, devidles" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://devidles.com/test/animal-type/" />
+<link rel="alternate" hreflang="ko" href="https://devidles.com/test/animal-type/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="동물 성격" />
+<meta property="og:url" content="https://devidles.com/test/animal-type/" />
+<meta property="og:title" content="동물 성격 MBTI — 당신은 어떤 동물?" />
+<meta property="og:description" content="16문항 1분 완료. 16동물 중 당신의 영혼은?" />
+<meta property="og:image" content="https://devidles.com/test/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="동물 성격 MBTI" />
+<meta name="twitter:description" content="당신을 닮은 동물은? 16문항 1분 완료." />
+<meta name="twitter:image" content="https://devidles.com/test/og.png" />
+
+<meta name="theme-color" content="#15121e" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E🐾%3C/text%3E%3C/svg%3E" />
+
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-head">
+  <a href="/" class="portal-back" aria-label="devidles 포털">✦ devidles</a>
+  <a href="/test/" class="logo">🧠 심리테스트</a>
+  <nav>
+    <a href="/test/">테스트 목록</a>
+    <a href="/plant/" target="_blank" rel="noopener">🎮 게임</a>
+    <a href="/about/">소개</a>
+  </nav>
+</header>
+
+<div class="page-title-strip">
+  <span class="page-emoji">🐾</span> <strong>동물 성격 MBTI</strong>
+</div>
+
+<main>
+  <section id="screen-intro" class="screen active">
+    <div class="hero">
+      <div class="hero-emoji">🦊</div>
+      <h1>당신은 어떤 동물의 영혼을 가지고 있을까?</h1>
+      <p class="lede">16개의 행동 패턴 질문으로 알아보는 <strong>동물 성격 MBTI</strong>. 16가지 동물 중 당신과 가장 가까운 영혼을 찾아드립니다. 서식 환경·사회성·잘 맞는 동물까지.</p>
+      <button id="btn-start" class="btn-primary">테스트 시작 →</button>
+      <p class="hero-meta">🐾 16동물 매칭 · 🌍 서식 환경 · 🤝 사회성 · 💕 궁합 동물</p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feat-icon">🦉</div>
+        <h3>16동물 아키타입</h3>
+        <p>늑대·여우·부엉이·돌고래 등 16종 캐릭터</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🏞️</div>
+        <h3>서식 · 사회성 분석</h3>
+        <p>혼자·무리, 낮·밤, 사냥·채집 등 행동 양식</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">💞</div>
+        <h3>궁합 동물</h3>
+        <p>나와 잘 맞는 동물 + 보완해주는 동물 매칭</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <div id="progress-text" class="progress-text">1 / 16</div>
+    </div>
+    <h2 id="q-text" class="q-text"></h2>
+    <div id="answer-list" class="answer-list"></div>
+    <button id="btn-back" class="btn-back" type="button">← 이전 질문</button>
+  </section>
+
+  <section id="screen-result" class="screen">
+    <div class="result-card" id="result-card">
+      <div class="result-emoji" id="result-emoji">🐺</div>
+      <p class="result-mbti" id="result-mbti">INTJ</p>
+      <h2 class="result-name" id="result-name">늑대</h2>
+      <p class="result-tagline" id="result-tagline"></p>
+      <p class="result-desc" id="result-desc"></p>
+      <div class="result-traits" id="result-traits"></div>
+      <div class="result-stats" id="result-stats"></div>
+      <div class="result-block">
+        <h4>🏞️ 서식 · 라이프스타일</h4>
+        <p id="result-habitat"></p>
+      </div>
+      <div class="result-block">
+        <h4>✨ 강점</h4>
+        <p id="result-strengths"></p>
+      </div>
+      <div class="result-block">
+        <h4>⚠️ 약점</h4>
+        <p id="result-weaknesses"></p>
+      </div>
+      <div class="result-block">
+        <h4>🌱 진화 팁</h4>
+        <p id="result-growth"></p>
+      </div>
+      <div class="result-block">
+        <h4>💞 잘 맞는 동물</h4>
+        <p id="result-compat"></p>
+      </div>
+    </div>
+
+    <div class="share-row">
+      <button id="btn-share-x" class="btn-share">𝕏 트위터 공유</button>
+      <button id="btn-share-kakao" class="btn-share">💬 카카오톡</button>
+      <button id="btn-share-copy" class="btn-share">🔗 링크 복사</button>
+    </div>
+
+    <div class="cross-promo">
+      <h3>🌱 식물도 키워보세요</h3>
+      <p>씨앗에서 행성까지 — 무료 방치형 식물 진화 게임. 동물 다음은 식물 도감!</p>
+      <a href="/plant/" class="btn-primary" target="_blank" rel="noopener">Idle Plant 플레이 →</a>
+    </div>
+
+    <button id="btn-restart" class="btn-restart">↻ 테스트 다시 하기</button>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>© 2026 심리테스트 · <a href="/test/">테스트 목록</a> · <a href="/plant/" target="_blank" rel="noopener">게임</a> · <a href="/about/">소개</a> · <a href="/contact/">문의</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a></p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  const QUESTIONS = [
+    { dim: 'EI', text: '동물원에서 가장 끌리는 우리는?',
+      a: ['미어캣처럼 무리가 많은 우리', 'E'], b: ['표범처럼 혼자 있는 우리', 'I'] },
+    { dim: 'EI', text: '낯선 사람과 엘리베이터에서 단둘이.',
+      a: ['"안녕하세요" 인사한다', 'E'], b: ['휴대폰만 본다', 'I'] },
+    { dim: 'EI', text: '에너지 회복은?',
+      a: ['친구들과 모임으로', 'E'], b: ['혼자 침대 누워서', 'I'] },
+    { dim: 'EI', text: '단체 카톡방의 당신은?',
+      a: ['대화를 시작하고 분위기를 잡는다', 'E'], b: ['답장 주로 하고 가끔 이모티콘', 'I'] },
+
+    { dim: 'NS', text: '산책 중 풀숲에서 부스럭 소리가 났다.',
+      a: ['"무엇이 들었을까" 상상부터 한다', 'N'], b: ['"바람인지 동물인지" 정확히 보려 한다', 'S'] },
+    { dim: 'NS', text: '동물 다큐를 본다면 더 끌리는 부분은?',
+      a: ['생태계 진화·종 간 관계', 'N'], b: ['개별 동물의 사냥·번식 장면', 'S'] },
+    { dim: 'NS', text: '낯선 환경에 떨어졌을 때 먼저 하는 것은?',
+      a: ['"이 환경의 큰 패턴" 파악', 'N'], b: ['"먹을 곳·잘 곳" 정확한 위치부터', 'S'] },
+    { dim: 'NS', text: '머릿속 상상의 빈도는?',
+      a: ['하루 종일 다른 세계를 떠올린다', 'N'], b: ['지금 눈앞의 것에 집중한다', 'S'] },
+
+    { dim: 'TF', text: '무리에서 분쟁이 생겼다.',
+      a: ['누가 맞고 틀린지 분석한다', 'T'], b: ['양쪽 마음부터 살핀다', 'F'] },
+    { dim: 'TF', text: '동료가 약한 모습을 보였다.',
+      a: ['"이렇게 강해지면 돼" 방법을 알려준다', 'T'], b: ['"같이 천천히 가자" 곁을 지킨다', 'F'] },
+    { dim: 'TF', text: '먹이가 한 개 남았다. 가장 어린 무리원이 배고파한다.',
+      a: ['공평한 분배 규칙대로 한다', 'T'], b: ['어린 쪽에 양보한다', 'F'] },
+    { dim: 'TF', text: '경쟁 상대를 마주쳤다.',
+      a: ['전력·전략을 빠르게 계산', 'T'], b: ['"우리 같이 갈 수도 있지 않을까" 가능성부터', 'F'] },
+
+    { dim: 'JP', text: '겨울이 오기 전에?',
+      a: ['먹이를 미리 저장한다', 'J'], b: ['닥치면 어떻게든 된다', 'P'] },
+    { dim: 'JP', text: '둥지·집의 모습은?',
+      a: ['항상 같은 자리, 정돈된 상태', 'J'], b: ['이리저리 옮겨다니며 매번 다른 모습', 'P'] },
+    { dim: 'JP', text: '하루 일과는?',
+      a: ['일출에 깨고 일몰에 잠든다', 'J'], b: ['배고프면 일어나고 졸리면 잔다', 'P'] },
+    { dim: 'JP', text: '먹잇감을 발견했다.',
+      a: ['몇 분간 관찰 후 정확한 타이밍에', 'J'], b: ['보자마자 즉흥적으로 돌진', 'P'] }
+  ];
+
+  const RESULTS = {
+    INTJ: { name: '늑대', emoji: '🐺', color: '#5a6a8a',
+      tagline: '달빛 아래 무리를 이끄는 전략가',
+      desc: '혼자 있어도 무리를 함께 있어도 자신만의 영역과 거리감을 유지하는 카리스마. 한 번 결정한 사냥은 며칠 단위로 계획해 끝까지 끌고 갑니다.',
+      habitat: '깊은 숲·툰드라, 가족 단위의 작은 무리. 야행성·박명성 활동.',
+      traits: ['전략', '독립', '충성', '인내'],
+      strengths: '큰 그림을 보고 조용히 핵심을 결정합니다. 위기 상황에서 가장 신뢰받는 리더.',
+      weaknesses: '신뢰하지 않는 외부인에게는 차갑게 보일 수 있고, 너무 혼자 짊어집니다.',
+      growth: '가끔은 무리의 후배에게 결정을 맡겨보세요. 늑대의 진짜 리더십은 후계자를 키우는 데서 옵니다.',
+      compat: '🐿️ ENFP 다람쥐 · 🦅 ESTP 매' },
+
+    INTP: { name: '부엉이', emoji: '🦉', color: '#7a6a8a',
+      tagline: '밤의 정적 속에서 모든 것을 관찰하는 현자',
+      desc: '소리 없이 날아 한 자리에서 오랫동안 관찰하는 타입. 호기심이 끌리면 다른 모든 일을 잊고 그것에만 몰입합니다.',
+      habitat: '오래된 숲·옛 건축물, 단독 생활. 야행성, 청각·시각 모두 예민.',
+      traits: ['관찰', '호기심', '논리', '독립'],
+      strengths: '아무도 묻지 않은 질문에서 시작해 누구도 시도하지 않은 답을 찾습니다.',
+      weaknesses: '관심사 외 일상이 흐트러지기 쉽고, 결정을 분석으로 대체하다 기회를 놓칩니다.',
+      growth: '"이 정도면 충분"의 기준선을 의식적으로 정해두면 무한 관찰에서 빠져나오기 쉽습니다.',
+      compat: '🦁 ENTJ 사자 · 🐻 ISTJ 곰' },
+
+    ENTJ: { name: '사자', emoji: '🦁', color: '#d99a3a',
+      tagline: '사바나의 햇살 아래 모두를 이끄는 자연스러운 왕',
+      desc: '"이 무리는 어디로 가야 하는가"를 가장 먼저 떠올리는 타입. 결단력 있게 행동하고 책임도 가장 무겁게 지며.',
+      habitat: '사바나의 광활한 영역. 암컷 중심의 강한 무리(프라이드), 주행성.',
+      traits: ['리더십', '추진력', '카리스마', '결단'],
+      strengths: '복잡한 상황을 단순한 행동 계획으로 분해하고 사람들을 한 방향으로 이끕니다.',
+      weaknesses: '속도가 다른 무리원을 답답해할 수 있고, 감정 관리가 차갑게 보일 수 있습니다.',
+      growth: '주간 1:1에서 "성과" 외에 "마음"을 묻는 의식적 시간을 두세요. 사자의 갈기는 무리의 신뢰에서 옵니다.',
+      compat: '🦉 INTP 부엉이 · 🐻 ISTJ 곰' },
+
+    ENTP: { name: '여우', emoji: '🦊', color: '#f5904a',
+      tagline: '꾀와 호기심으로 어디든 살아남는 트릭스터',
+      desc: '같은 사냥감도 매번 다른 방법으로 잡는 변주의 천재. 새 환경에 떨어져도 며칠 만에 적응하는 적응력.',
+      habitat: '도시·숲·산악 어디든. 단독 또는 짝 단위, 야행성·박명성.',
+      traits: ['지능', '적응', '호기심', '유머'],
+      strengths: '아이디어 잔뜩 뽑아 즉시 시도하고 실패해도 빠르게 다른 방법을 찾습니다.',
+      weaknesses: '한 가지를 끝까지 마무리하기 어렵고, 가까운 관계에서도 거리감을 둡니다.',
+      growth: '"끝낸 일 한 줄 회고"를 매주 적어보세요. 영리함이 끈기와 만나면 진짜 강해집니다.',
+      compat: '🦌 INFJ 사슴 · 🐻 ISTJ 곰' },
+
+    INFJ: { name: '사슴', emoji: '🦌', color: '#a890c0',
+      tagline: '숲 속에서 모든 것을 느끼는 섬세한 영혼',
+      desc: '작은 소리·기운까지 알아채는 예민한 감각. 무리 안에서도 자신만의 사색의 시간을 가집니다.',
+      habitat: '깊은 숲·초원의 경계, 가족 단위 무리. 박명성·주행성.',
+      traits: ['통찰', '섬세', '평화', '비전'],
+      strengths: '말하지 않은 감정·기운을 읽어내고, 조용히 깊은 영향을 줍니다.',
+      weaknesses: '너무 많이 흡수해 지치기 쉽고, 갈등 상황에서 도피하려는 경향이 있습니다.',
+      growth: '"오늘은 여기까지 느낀다" 경계선을 마음에 그어보세요. 사슴도 자기 영역을 표시해야 안전합니다.',
+      compat: '🦊 ENTP 여우 · 🦜 ESFP 앵무새' },
+
+    INFP: { name: '토끼', emoji: '🐰', color: '#d8a8c8',
+      tagline: '순수한 마음으로 작은 행복을 찾는 여린 영혼',
+      desc: '겁이 많아 보여도 자기 가치관 앞에서는 누구보다 단단합니다. 좋아하는 사람·풀밭에서 가장 빛납니다.',
+      habitat: '풀밭·언덕·정원의 굴, 가족 단위. 박명성·주행성.',
+      traits: ['진정성', '순수', '감수성', '평화'],
+      strengths: '진심으로 사람을 위로하고, 자신만의 가치를 굳건히 지킵니다.',
+      weaknesses: '비판에 깊이 흔들리고, 위협적 환경에서 빠르게 위축됩니다.',
+      growth: '"내 가치와 다른" 일이라도 작은 한 걸음 시도해보세요. 토끼도 가끔은 굴 밖으로 나와야 합니다.',
+      compat: '🦁 ENTJ 사자 · 🐬 ENFJ 돌고래' },
+
+    ENFJ: { name: '돌고래', emoji: '🐬', color: '#5abaef',
+      tagline: '무리의 분위기를 만들고 모두를 함께 헤엄치게 하는 인도자',
+      desc: '서로 소통하며 함께 사냥하고 함께 노는 사회성의 정점. 약한 동료를 절대 두고 가지 않습니다.',
+      habitat: '연안·대양, 강한 사회적 무리(포드). 주행성·박명성.',
+      traits: ['소통', '리더십', '공감', '활력'],
+      strengths: '무리의 분위기를 만들고 약한 자를 챙기며 모두를 한 방향으로 이끕니다.',
+      weaknesses: '무리의 기대에 과도하게 맞추다 자신을 잃고, 거절을 어려워합니다.',
+      growth: '"혼자 헤엄치는 시간"을 일주일에 한 번 가져보세요. 무리를 이끌려면 자신부터 회복해야 합니다.',
+      compat: '🐰 INFP 토끼 · 🐱 ISFP 고양이' },
+
+    ENFP: { name: '다람쥐', emoji: '🐿️', color: '#f5a86a',
+      tagline: '나무 사이를 자유롭게 누비는 끝없는 호기심',
+      desc: '한 자리에 가만히 있지 못하고 끊임없이 새로운 것을 발견합니다. 만나는 모든 동물에게 친근합니다.',
+      habitat: '활엽수림·도시 공원, 단독이지만 사회적. 주행성.',
+      traits: ['활기', '호기심', '자유', '낙천'],
+      strengths: '어디서든 즐거움을 발견하고, 다른 동물들의 가능성을 빛나게 만듭니다.',
+      weaknesses: '한 곳에 오래 머물기 힘들고, 시작한 일을 잊고 다른 데로 가기 쉽습니다.',
+      growth: '"한 가지 깊이 파는 한 달"을 정해보세요. 도토리는 묻어둘 때 더 큰 나무가 됩니다.',
+      compat: '🐺 INTJ 늑대 · 🦌 INFJ 사슴' },
+
+    ISTJ: { name: '곰', emoji: '🐻', color: '#6a5a4a',
+      tagline: '꾸준한 책임감으로 자기 영역을 지키는 든든한 보호자',
+      desc: '계절의 변화를 미리 준비하고, 한 번 자기 영역으로 정한 곳은 끝까지 지키는 안정감의 화신.',
+      habitat: '깊은 숲·산악, 주로 단독 영역. 주행성·박명성, 겨울잠.',
+      traits: ['책임', '안정', '신뢰', '인내'],
+      strengths: '맡은 영역과 가족을 끝까지 지킵니다. 위기에 가장 든든한 동료.',
+      weaknesses: '변화에 적응 시간이 필요하고, 새로운 도전에 보수적입니다.',
+      growth: '"안전한 변화"의 작은 실험을 매 분기 한 번씩 시도해보세요. 곰도 봄에는 새 영역을 탐색합니다.',
+      compat: '🦁 ENTJ 사자 · 🐬 ENFJ 돌고래' },
+
+    ISFJ: { name: '양', emoji: '🐑', color: '#c8b8a0',
+      tagline: '무리를 따뜻하게 감싸 안는 조용한 보살핌',
+      desc: '먼저 나서지 않지만 항상 무리 곁에서 가장 약한 자를 챙기는 따스함. 평화로운 풀밭의 정서.',
+      habitat: '초원·언덕, 강한 무리. 주행성, 평화적.',
+      traits: ['보살핌', '온화', '겸손', '충실'],
+      strengths: '무리의 작은 변화를 알아채고 조용히 챙겨줍니다. 가장 든든한 동행자.',
+      weaknesses: '자기 주장이 약해 손해 보고, 거절을 못해 지치기 쉽습니다.',
+      growth: '"내가 원하는 풀밭"을 한 번씩 말로 표현해보세요. 양도 어느 방향으로 갈지 결정할 권리가 있습니다.',
+      compat: '🦅 ESTP 매 · 🦜 ESFP 앵무새' },
+
+    ESTJ: { name: '호랑이', emoji: '🐯', color: '#dc7a3a',
+      tagline: '영역을 지키는 카리스마와 자존심의 왕',
+      desc: '자기 영역을 가장 명확히 표시하고 가장 단호하게 지키는 타입. 책임감과 자존심이 같은 무게입니다.',
+      habitat: '울창한 정글·시베리아 타이가, 단독 생활. 야행성·박명성.',
+      traits: ['카리스마', '결단', '자존심', '책임'],
+      strengths: '체계를 만들고 위기에 가장 빨리 행동합니다. 신뢰의 대명사.',
+      weaknesses: '경직된 영역 의식에 매달려 유연성을 잃을 수 있고, 감정적 미묘함을 놓칩니다.',
+      growth: '"내 영역 밖"에서 손님 노릇 해보는 분기를 가져보세요. 호랑이도 다른 숲을 알아야 더 강해집니다.',
+      compat: '🐱 ISFP 고양이 · 🐰 INFP 토끼' },
+
+    ESFJ: { name: '강아지', emoji: '🐶', color: '#f59a7a',
+      tagline: '사람들을 모이게 하는 무조건적 사랑의 발산',
+      desc: '주변의 모든 존재를 사랑하고 사랑받기를 원하는 따스함. 무리에서 가장 친근하고 가까운 존재.',
+      habitat: '사람과의 공생, 강한 가족 유대. 주행성·박명성.',
+      traits: ['친화력', '헌신', '사교', '환대'],
+      strengths: '관계를 잘 다듬고, 모임을 화기애애하게 이끕니다. 가장 인기 많은 친구.',
+      weaknesses: '평가에 민감하고, 인정받지 못하면 자존감이 흔들립니다.',
+      growth: '"혼자 산책" 시간을 의식적으로 가져보세요. 강아지도 자기만의 냄새를 맡을 시간이 필요합니다.',
+      compat: '🐱 ISFP 고양이 · 🐆 ISTP 표범' },
+
+    ISTP: { name: '표범', emoji: '🐆', color: '#7a8a8a',
+      tagline: '소리 없이 정확히 움직이는 침착한 정비공',
+      desc: '필요한 순간 가장 빠르고 정확하게 움직이는 타입. 평소엔 조용하지만 행동이 시작되면 압도적입니다.',
+      habitat: '암벽·사바나·열대우림, 단독 생활. 야행성, 영역 표시 강함.',
+      traits: ['실용', '차분', '효율', '독립'],
+      strengths: '문제 앞에서 가장 침착하고, 손으로 해결하는 일에 강합니다. 만능 트러블슈터.',
+      weaknesses: '감정 대화를 어려워하고, 장기 계획보다 당장의 흥미를 따릅니다.',
+      growth: '"이번 사냥에서 배운 것"을 한 줄로 적어 무리와 공유해보세요. 표범의 기술이 무리의 자산이 됩니다.',
+      compat: '🐶 ESFJ 강아지 · 🐬 ENFJ 돌고래' },
+
+    ISFP: { name: '고양이', emoji: '🐱', color: '#c8a8d0',
+      tagline: '자기만의 결을 가진 자유로운 영혼',
+      desc: '누구의 명령도 받지 않지만 자신이 사랑하는 사람·자리에는 깊은 헌신을 보이는 매력. 일상의 모든 디테일을 음미.',
+      habitat: '집·골목·창가, 단독 또는 느슨한 사회. 박명성, 호기심 많음.',
+      traits: ['감성', '독립', '진정성', '미감'],
+      strengths: '아름다움과 진심을 알아보고, 말 없이도 깊은 연결을 만들어냅니다.',
+      weaknesses: '갈등을 회피하다 손해를 보고, 자기 주장이 약해 묻히기 쉽습니다.',
+      growth: '"오늘 좋았던 한 가지"를 짧게라도 표현해보세요. 고양이도 가르랑거릴 때 가장 매력적입니다.',
+      compat: '🐯 ESTJ 호랑이 · 🐬 ENFJ 돌고래' },
+
+    ESTP: { name: '매', emoji: '🦅', color: '#a85a3a',
+      tagline: '하늘 위에서 정확히 목표를 향해 내려꽂는 속도',
+      desc: '관찰과 행동이 동시에 일어나는 타입. 기회를 보면 망설이지 않고 가장 빠르게 행동합니다.',
+      habitat: '절벽·고지대, 단독 또는 짝. 주행성, 시각 극도로 예민.',
+      traits: ['속도', '결단', '용기', '집중'],
+      strengths: '순간 판단이 빠르고, 누구든 무엇이든 활용해 결과를 만듭니다.',
+      weaknesses: '깊은 사색이 어렵고, 인내가 필요한 일에 빠르게 지칩니다.',
+      growth: '"비행하지 않는 시간"을 일부러 가져보세요. 매도 둥지에서 휴식해야 더 멀리 날 수 있습니다.',
+      compat: '🐺 INTJ 늑대 · 🐑 ISFJ 양' },
+
+    ESFP: { name: '앵무새', emoji: '🦜', color: '#f5704a',
+      tagline: '무리의 분위기를 화려하게 만드는 자유로운 엔터테이너',
+      desc: '어디에 있든 그 자리의 색을 만드는 타입. 사람의 말을 흉내내고 분위기를 띄우는 천재.',
+      habitat: '열대우림·사바나, 시끄러운 사회적 무리. 주행성.',
+      traits: ['화려', '활달', '즐거움', '사교'],
+      strengths: '분위기를 띄우고, 일상에 색을 입히는 천재. 함께 있으면 즐거워집니다.',
+      weaknesses: '깊은 슬픔에 머물기 어렵고, 평온한 환경에서 빠르게 시들 수 있습니다.',
+      growth: '"조용한 한 시간"을 매일 가져보세요. 앵무새의 매력은 노래만이 아닙니다.',
+      compat: '🦌 INFJ 사슴 · 🐑 ISFJ 양' }
+  };
+
+  let currentQ = 0;
+  const scores = { E: 0, I: 0, N: 0, S: 0, T: 0, F: 0, J: 0, P: 0 };
+  const history = [];
+
+  const $ = (id) => document.getElementById(id);
+  const showScreen = (id) => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  $('btn-start').addEventListener('click', () => {
+    currentQ = 0; history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    showScreen('screen-quiz'); renderQuestion();
+  });
+
+  function renderQuestion() {
+    const q = QUESTIONS[currentQ];
+    $('q-text').textContent = q.text;
+    $('progress-text').textContent = `${currentQ + 1} / ${QUESTIONS.length}`;
+    $('progress-fill').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+    const list = $('answer-list');
+    list.innerHTML = '';
+    [['a', q.a], ['b', q.b]].forEach(([key, [text, type]]) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn'; btn.type = 'button'; btn.textContent = text;
+      btn.addEventListener('click', () => answer(type));
+      list.appendChild(btn);
+    });
+    $('btn-back').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
+  }
+
+  function answer(type) {
+    scores[type]++; history.push(type); currentQ++;
+    if (currentQ >= QUESTIONS.length) finish(); else renderQuestion();
+  }
+
+  $('btn-back').addEventListener('click', () => {
+    if (currentQ === 0) return;
+    currentQ--;
+    const lastType = history.pop();
+    if (lastType) scores[lastType]--;
+    renderQuestion();
+  });
+
+  function calculateMBTI() {
+    return (scores.E >= scores.I ? 'E' : 'I') + (scores.N >= scores.S ? 'N' : 'S') +
+           (scores.T >= scores.F ? 'T' : 'F') + (scores.J >= scores.P ? 'J' : 'P');
+  }
+
+  function finish() {
+    const mbti = calculateMBTI();
+    const r = RESULTS[mbti];
+    $('result-mbti').textContent = mbti;
+    $('result-name').textContent = r.name;
+    $('result-emoji').textContent = r.emoji;
+    $('result-tagline').textContent = r.tagline;
+    $('result-desc').textContent = r.desc;
+    $('result-habitat').textContent = r.habitat;
+    $('result-strengths').textContent = r.strengths;
+    $('result-weaknesses').textContent = r.weaknesses;
+    $('result-growth').textContent = r.growth;
+    $('result-compat').textContent = r.compat;
+    $('result-card').style.setProperty('--card-color', r.color);
+
+    const traits = $('result-traits'); traits.innerHTML = '';
+    r.traits.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'trait-pill'; span.textContent = t;
+      traits.appendChild(span);
+    });
+
+    const stats = $('result-stats'); stats.innerHTML = '';
+    [['E', '사회성', 'I', '독립'], ['N', '직관', 'S', '감각'],
+     ['T', '논리', 'F', '공감'], ['J', '계획', 'P', '즉흥']].forEach(([l, ln, r, rn]) => {
+      const total = scores[l] + scores[r];
+      const lp = total > 0 ? Math.round((scores[l] / total) * 100) : 50;
+      const rp = 100 - lp;
+      const dominant = lp >= rp ? l : r;
+      const row = document.createElement('div');
+      row.className = 'stat-row';
+      row.innerHTML = `<div class="stat-labels"><span class="${dominant === l ? 'dominant' : ''}">${ln} ${lp}%</span><span class="${dominant === r ? 'dominant' : ''}">${rp}% ${rn}</span></div><div class="stat-bar"><div class="stat-fill stat-l" style="width:${lp}%"></div><div class="stat-fill stat-r" style="width:${rp}%"></div></div>`;
+      stats.appendChild(row);
+    });
+
+    history && (window.location.hash = mbti);
+    document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 동물 성격 MBTI`;
+    showScreen('screen-result');
+  }
+
+  $('btn-share-x').addEventListener('click', () => {
+    const mbti = calculateMBTI(); const r = RESULTS[mbti];
+    const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n동물 성격 MBTI로 알아보세요`;
+    const url = `https://devidles.com/test/animal-type/#${mbti}`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  });
+
+  $('btn-share-kakao').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    const url = `https://devidles.com/test/animal-type/#${mbti}`;
+    if (navigator.share) {
+      navigator.share({ title: `동물 성격: ${RESULTS[mbti].name} (${mbti})`, text: RESULTS[mbti].tagline, url })
+        .catch(() => copyLink(url));
+    } else copyLink(url);
+  });
+
+  $('btn-share-copy').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    copyLink(`https://devidles.com/test/animal-type/#${mbti}`);
+  });
+
+  function copyLink(url) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => toast('링크가 복사되었습니다 ✓'));
+    } else {
+      const ta = document.createElement('textarea'); ta.value = url;
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('링크가 복사되었습니다 ✓'); }
+      catch (e) { toast('복사 실패. URL을 직접 복사해주세요.'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.classList.add('show'), 10);
+    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2000);
+  }
+
+  $('btn-restart').addEventListener('click', () => {
+    currentQ = 0; history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    window.location.hash = '';
+    document.title = '동물 성격 MBTI 테스트 — 당신은 어떤 동물?';
+    showScreen('screen-intro');
+  });
+
+  function checkHashResult() {
+    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
+    if (RESULTS[hash]) {
+      Object.keys(scores).forEach(k => scores[k] = 0);
+      [...hash].forEach((ch) => {
+        scores[ch] = 4;
+        const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
+        scores[opp] = 0;
+      });
+      finish();
+    }
+  }
+  window.addEventListener('hashchange', checkHashResult);
+  checkHashResult();
+})();
+</script>
+</body>
+</html>

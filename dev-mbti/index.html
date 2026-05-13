@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>개발자 유형 MBTI 테스트 — 당신은 어떤 개발자?</title>
+<meta name="description" content="16문항으로 알아보는 개발자 MBTI. 아키텍트·분석가·이노베이터 등 16가지 개발자 아키타입 매칭. 무료, 1분 완료, 직무 적합·성장 팁 포함." />
+<meta name="keywords" content="개발자 MBTI, 개발자 유형, 프로그래머 테스트, 코딩 성격, 엔지니어 테스트, 백엔드 프론트엔드 테스트, 무료 심리테스트, devidles" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://devidles.com/test/dev-mbti/" />
+<link rel="alternate" hreflang="ko" href="https://devidles.com/test/dev-mbti/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="개발자 MBTI" />
+<meta property="og:url" content="https://devidles.com/test/dev-mbti/" />
+<meta property="og:title" content="개발자 유형 MBTI — 당신은 어떤 개발자?" />
+<meta property="og:description" content="16문항 1분 완료. 16가지 개발자 아키타입 + 직무·성장 팁." />
+<meta property="og:image" content="https://devidles.com/test/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="개발자 유형 MBTI" />
+<meta name="twitter:description" content="당신은 어떤 개발자? 16문항 1분 완료." />
+<meta name="twitter:image" content="https://devidles.com/test/og.png" />
+
+<meta name="theme-color" content="#15121e" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E💻%3C/text%3E%3C/svg%3E" />
+
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-head">
+  <a href="/" class="portal-back" aria-label="devidles 포털">✦ devidles</a>
+  <a href="/test/" class="logo">🧠 심리테스트</a>
+  <nav>
+    <a href="/test/">테스트 목록</a>
+    <a href="/plant/" target="_blank" rel="noopener">🎮 게임</a>
+    <a href="/about/">소개</a>
+  </nav>
+</header>
+
+<div class="page-title-strip">
+  <span class="page-emoji">💻</span> <strong>개발자 유형 MBTI</strong>
+</div>
+
+<main>
+  <!-- INTRO 화면 -->
+  <section id="screen-intro" class="screen active">
+    <div class="hero">
+      <div class="hero-emoji">⌨️</div>
+      <h1>당신은 어떤 개발자인가요?</h1>
+      <p class="lede">16개의 실무 상황 질문으로 알아보는 <strong>개발자 MBTI</strong>. 16가지 개발자 아키타입 중 당신의 작업 스타일과 가장 가까운 유형을 찾아드립니다. 약 1분 30초 소요, 무료, 회원가입 불필요.</p>
+      <button id="btn-start" class="btn-primary">테스트 시작 →</button>
+      <p class="hero-meta">💻 16개발자 유형 · 📋 16문항 · 🎯 직무 적합 · ✨ 성장 팁 포함</p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feat-icon">🏗️</div>
+        <h3>16개발자 아키타입</h3>
+        <p>아키텍트·분석가·트러블슈터 등 다양한 개발자 캐릭터</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📊</div>
+        <h3>4차원 분석</h3>
+        <p>협업·사고·결정·계획 4가지 축의 점수 그래프</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🎯</div>
+        <h3>직무 · 성장 팁</h3>
+        <p>유형별로 어울리는 역할과 다음 단계 성장 가이드</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ 화면 -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <div id="progress-text" class="progress-text">1 / 16</div>
+    </div>
+    <h2 id="q-text" class="q-text"></h2>
+    <div id="answer-list" class="answer-list"></div>
+    <button id="btn-back" class="btn-back" type="button">← 이전 질문</button>
+  </section>
+
+  <!-- RESULT 화면 -->
+  <section id="screen-result" class="screen">
+    <div class="result-card" id="result-card">
+      <div class="result-emoji" id="result-emoji">🏗️</div>
+      <p class="result-mbti" id="result-mbti">INTJ</p>
+      <h2 class="result-name" id="result-name">아키텍트</h2>
+      <p class="result-tagline" id="result-tagline"></p>
+      <p class="result-desc" id="result-desc"></p>
+      <div class="result-traits" id="result-traits"></div>
+      <div class="result-stats" id="result-stats"></div>
+      <div class="result-block">
+        <h4>✨ 강점</h4>
+        <p id="result-strengths"></p>
+      </div>
+      <div class="result-block">
+        <h4>⚠️ 약점</h4>
+        <p id="result-weaknesses"></p>
+      </div>
+      <div class="result-block">
+        <h4>🎯 어울리는 역할</h4>
+        <p id="result-career"></p>
+      </div>
+      <div class="result-block">
+        <h4>🌱 성장 팁</h4>
+        <p id="result-growth"></p>
+      </div>
+      <div class="result-block">
+        <h4>💞 잘 맞는 동료 유형</h4>
+        <p id="result-compat"></p>
+      </div>
+    </div>
+
+    <div class="share-row">
+      <button id="btn-share-x" class="btn-share">𝕏 트위터 공유</button>
+      <button id="btn-share-kakao" class="btn-share">💬 카카오톡</button>
+      <button id="btn-share-copy" class="btn-share">🔗 링크 복사</button>
+    </div>
+
+    <div class="cross-promo">
+      <h3>🎮 머리 식힐 때는 식물 키우기</h3>
+      <p>씨앗에서 행성까지 — 무료 방치형 식물 진화 게임. 회원가입 없이 바로 시작.</p>
+      <a href="/plant/" class="btn-primary" target="_blank" rel="noopener">Idle Plant 플레이 →</a>
+    </div>
+
+    <button id="btn-restart" class="btn-restart">↻ 테스트 다시 하기</button>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>© 2026 심리테스트 · <a href="/test/">테스트 목록</a> · <a href="/plant/" target="_blank" rel="noopener">게임</a> · <a href="/about/">소개</a> · <a href="/contact/">문의</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a></p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ========== 16 질문 (각 차원 4문항) ==========
+  const QUESTIONS = [
+    { dim: 'EI', text: '팀 회의에서 새 아이디어가 떠올랐을 때 당신은?',
+      a: ['바로 손 들고 말한다', 'E'], b: ['정리해서 다음 회의에 가져온다', 'I'] },
+    { dim: 'EI', text: '동료가 막혔다고 메시지를 보냈다.',
+      a: ['화면 공유하며 같이 풀어준다', 'E'], b: ['요점을 적어 메시지로 답한다', 'I'] },
+    { dim: 'EI', text: '사내 기술 발표 차례가 왔다.',
+      a: ['청중과 눈 맞추며 발표를 즐긴다', 'E'], b: ['슬라이드를 꼼꼼히 만들고 빠르게 끝낸다', 'I'] },
+    { dim: 'EI', text: '코드 리뷰는 어떻게 선호하나?',
+      a: ['짧게라도 음성 통화하며 한다', 'E'], b: ['Pull Request 코멘트로 충분하다', 'I'] },
+
+    { dim: 'NS', text: '새 프로젝트 첫 날 가장 먼저 하는 일은?',
+      a: ['전체 아키텍처와 도메인 흐름을 그린다', 'N'], b: ['로컬에 띄울 수 있는 최소 단위부터 만든다', 'S'] },
+    { dim: 'NS', text: '기술 책을 고른다면 더 끌리는 쪽은?',
+      a: ['Domain-Driven Design, SICP 같은 패러다임 책', 'N'], b: ['Effective X, Clean Code 같은 실무 베스트 프랙티스', 'S'] },
+    { dim: 'NS', text: '버그를 마주했을 때 첫 반응은?',
+      a: ['"이 시스템 어딘가 구조적 문제가 있다"', 'N'], b: ['"우선 재현 시나리오와 로그부터 확보하자"', 'S'] },
+    { dim: 'NS', text: '코드 리뷰에서 자주 다는 코멘트는?',
+      a: ['"이 디자인 패턴이 더 적합해보입니다"', 'N'], b: ['"이 변수명 명확하게 바꾸면 좋겠어요"', 'S'] },
+
+    { dim: 'TF', text: 'PR 충돌이 났다. 동료에게 어떻게?',
+      a: ['"충돌 났네, 이렇게 풀고 푸시할게"', 'T'], b: ['"혹시 시간 될 때 같이 봐도 될까요?"', 'F'] },
+    { dim: 'TF', text: '주니어가 명백한 실수를 했다.',
+      a: ['정확히 무엇이 틀렸는지 짚는다', 'T'], b: ['"고생했어요, 이 부분만 같이 다듬어볼까요?"', 'F'] },
+    { dim: 'TF', text: '기술 선택을 두고 의견이 갈렸다.',
+      a: ['벤치마크·트레이드오프 표를 만들어 결정', 'T'], b: ['팀이 이미 익숙하고 좋아하는 쪽을 선호', 'F'] },
+    { dim: 'TF', text: '새벽 온콜 알림이 울렸다.',
+      a: ['즉시 진단 모드로 들어간다', 'T'], b: ['혼자 보다 안 풀리면 동료 깨우기 미안해서 더 매달린다', 'F'] },
+
+    { dim: 'JP', text: '스프린트 시작 시 당신은?',
+      a: ['모든 티켓에 일정·우선순위를 매겨둔다', 'J'], b: ['우선순위 한두 개부터, 나머지는 흐름대로', 'P'] },
+    { dim: 'JP', text: '코드 작성 스타일은?',
+      a: ['함수 시그니처·타입 다 잡고 본문 작성', 'J'], b: ['일단 동작하게 만들고 리팩터링', 'P'] },
+    { dim: 'JP', text: '마감일이 다가올 때 보통?',
+      a: ['D-3엔 이미 끝나있다', 'J'], b: ['D-1 새벽에 폭발적 집중', 'P'] },
+    { dim: 'JP', text: '새 기술 학습 방식은?',
+      a: ['공식 문서 한 챕터씩 정독', 'J'], b: ['필요한 부분 점프, 실험으로 익힌다', 'P'] }
+  ];
+
+  // ========== 16 개발자 결과 ==========
+  const RESULTS = {
+    INTJ: { name: '아키텍트', emoji: '🏗️', color: '#5a7ab8',
+      tagline: '시스템 전체를 머릿속에서 굴리는 설계 장인',
+      desc: '오래 사용될 시스템을 머릿속에서 시뮬레이션하며 만드는 타입. 도메인 모델, 모듈 경계, 장기 진화 시나리오를 동시에 본다.',
+      traits: ['장기 비전', '추상화', '독립적', '깊은 사고'],
+      strengths: '복잡한 시스템도 본질을 꿰뚫어 단순한 모델로 환원합니다. 6개월 후의 유지보수성까지 고려한 설계.',
+      weaknesses: '완벽한 설계를 추구하다 실행이 늦어지거나, 즉흥적 변경 요청에 답답함을 느낄 수 있습니다.',
+      career: '시니어 백엔드, 시스템 아키텍트, 플랫폼 엔지니어, 도메인 모델링 리드',
+      growth: '한 번에 모든 걸 설계하려 하지 말고 작은 슬라이스를 빠르게 출시하며 검증하는 습관을 들여보세요. 피드백 루프가 빨라집니다.',
+      compat: '💡 ENFP 데브 에반젤리스트 · 🛠 ESTP 해커톤 챔피언' },
+
+    INTP: { name: '분석가', emoji: '🔬', color: '#6a8a9a',
+      tagline: '"왜 이게 이렇게 동작하지?"가 일상인 사색가',
+      desc: '메모리 모델, 컴파일러 최적화, 분산 합의 — 본질적 원리에 끌리는 타입. 한 가지 주제를 며칠씩 깊이 파고들곤 합니다.',
+      traits: ['호기심', '논리', '독창성', '비범함'],
+      strengths: '아무도 안 묻는 질문에서 시작해 누구도 시도 안 한 답을 찾아냅니다. 어려운 디버깅·성능 분석의 최후 보루.',
+      weaknesses: '관심사 외 일상 업무는 미루기 쉽고, 결정을 분석으로 대체하다 기회를 놓칠 수 있습니다.',
+      career: 'R&D 엔지니어, 컴파일러·런타임 개발자, 성능 분석가, 오픈소스 기여자',
+      growth: '"충분히 좋은(good enough)"의 기준선을 의식적으로 정해두면 무한 탐구에서 빠져나오기 쉽습니다.',
+      compat: '🚀 ENTJ 테크 리드 · 🧱 ESTJ 프로젝트 매니저' },
+
+    ENTJ: { name: '테크 리드', emoji: '🚀', color: '#d96a5a',
+      tagline: '목표를 분해해 사람과 일정을 함께 움직이는 추진력',
+      desc: '"어떻게 6주 안에 출시할까"를 가장 먼저 떠올리는 타입. 전략·일정·인력 배분을 동시에 굴립니다.',
+      traits: ['추진력', '전략', '리더십', '결단력'],
+      strengths: '목표를 달성 가능한 단위로 분해하고 사람들을 한 방향으로 이끄는 자연스러운 영향력.',
+      weaknesses: '속도가 다른 동료를 답답해할 수 있고, 효율을 우선하다 감정 관리가 차갑게 보일 수 있습니다.',
+      career: '엔지니어링 매니저, 테크 리드, 스타트업 CTO, 프로젝트 디렉터',
+      growth: '주간 1:1에서 "성과" 외에 "감정·번아웃"을 묻는 의식적 시간을 두세요. 팀 지속력이 달라집니다.',
+      compat: '🔬 INTP 분석가 · 🛡️ ISTJ 미들웨어 장인' },
+
+    ENTP: { name: '이노베이터', emoji: '💡', color: '#f0b860',
+      tagline: '"이거 이렇게 한번 해볼까?"의 끝없는 실험가',
+      desc: '새 프레임워크·언어·아키텍처를 가장 먼저 시도해보고 팀에 가져옵니다. 토론을 즐기고 가능성 탐색이 본능.',
+      traits: ['실험정신', '적응력', '논쟁', '에너지'],
+      strengths: '아이디어 잔뜩 뽑아 그중 1~2개를 즉시 프로토타입으로 증명합니다. 정체된 팀의 활력소.',
+      weaknesses: '시작한 것을 끝맺기 어렵고, 토론을 즐기다 동료를 지치게 할 수 있습니다.',
+      career: '풀스택 엔지니어, R&D 프로토타이퍼, 데브렐, 해커톤 리더',
+      growth: '"끝낸 프로젝트 한 줄 회고"를 매주 적어보세요. 시작과 끝의 패턴이 보입니다.',
+      compat: '🏗️ INTJ 아키텍트 · 🎨 ISFP UX 크리에이터' },
+
+    INFJ: { name: '개발 멘토', emoji: '🧭', color: '#9a78b8',
+      tagline: '말하지 않은 것까지 읽어내는 사려 깊은 안내자',
+      desc: '주니어가 막혔을 때 "왜 막혔는지"부터 함께 짚어주는 타입. 개인의 성장 곡선과 팀의 문화를 동시에 신경 씁니다.',
+      traits: ['통찰력', '공감', '깊이', '비전'],
+      strengths: '사람의 강점·약점을 빠르게 읽고 적합한 길로 안내합니다. 멘토링 후 성장률이 가장 큰 동료를 만들어냅니다.',
+      weaknesses: '에너지를 너무 쏟다 번아웃이 잦고, 이상과 현실 차이에 깊이 실망할 수 있습니다.',
+      career: '엔지니어링 매니저, 시니어 멘토, 개발자 교육·코치, 컬쳐 리드',
+      growth: '"나를 위한 1시간"을 매일 캘린더에 미리 잡아두세요. 에너지 회복이 멘토링 품질을 결정합니다.',
+      compat: '🐿️ ENFP 데브 에반젤리스트 · 🎢 ESFP 데모 데이 스타' },
+
+    INFP: { name: '크래프트맨', emoji: '🪶', color: '#a890d0',
+      tagline: '코드의 아름다움과 의미에 진심인 장인',
+      desc: '"왜 이 함수가 존재해야 하는가"를 묻는 타입. 네이밍 하나에 30분, 함수 분리에 1시간을 쓰는 자신만의 미감이 있습니다.',
+      traits: ['진정성', '미감', '내성적', '가치 중심'],
+      strengths: '코드베이스 가독성을 한 단계 끌어올리고, 가치 중심 제품에 깊은 헌신을 보입니다.',
+      weaknesses: '비판에 깊이 상처받고, 현실적 트레이드오프 결정 앞에서 흔들리기 쉽습니다.',
+      career: '오픈소스 메인테이너, UX 엔지니어, DX 도구 개발자, 기술 작가',
+      growth: '완벽한 코드보다 출시된 코드가 사용자에게 닿습니다 — 80% 완성에서 머지 버튼 누르는 연습을 해보세요.',
+      compat: '🚀 ENTJ 테크 리드 · 🎉 ESFJ 풀스택 코디네이터' },
+
+    ENFJ: { name: '팀 빌더', emoji: '🌟', color: '#f5c43a',
+      tagline: '팀의 분위기를 만들고 모두를 같은 배에 태우는 리더',
+      desc: '"이 결정으로 팀은 어떻게 느낄까"를 자연스럽게 고려합니다. 1:1, 회고, 온보딩을 잘 설계합니다.',
+      traits: ['따뜻함', '리더십', '소통', '영감'],
+      strengths: '사람과 사람 사이의 마찰을 줄이고 팀을 한 방향으로 결집시킵니다. 입사 후 3개월 만족도가 높은 팀의 비밀.',
+      weaknesses: '팀 기대에 과도하게 맞추다 자신을 잃고, 거절을 어려워합니다.',
+      career: '엔지니어링 매니저, 스크럼 마스터, 디벨로퍼 어드보케이트, 채용 리드',
+      growth: '"내 일정에서 빼야 할 것" 목록을 분기마다 정리하세요. 모두를 챙기려면 자신부터 챙겨야 합니다.',
+      compat: '🪶 INFP 크래프트맨 · 🛡️ ISTJ 미들웨어 장인' },
+
+    ENFP: { name: '데브 에반젤리스트', emoji: '🐿️', color: '#f5905a',
+      tagline: '기술의 즐거움을 사방에 퍼뜨리는 에너지원',
+      desc: '컨퍼런스·블로그·트위터에서 가장 활발한 타입. 새 기술의 가치를 빠르게 알아보고 동료들을 끌어들입니다.',
+      traits: ['열정', '연결', '자유', '가능성'],
+      strengths: '커뮤니티 구축과 지식 공유의 천재. 어려운 개념도 매력적인 스토리로 풀어냅니다.',
+      weaknesses: '깊이 있는 한 가지에 머무르기 어렵고, 디테일·반복 작업에 빠르게 지칩니다.',
+      career: '디벨로퍼 어드보케이트, 데브렐, 기술 콘텐츠 크리에이터, 컨퍼런스 스피커',
+      growth: '"한 분기에 한 가지 깊은 주제"를 정해 끝까지 파보세요. 폭과 깊이가 함께 자랍니다.',
+      compat: '🏗️ INTJ 아키텍트 · 🧭 INFJ 개발 멘토' },
+
+    ISTJ: { name: '미들웨어 장인', emoji: '🛡️', color: '#5a8a5a',
+      tagline: '한 번 맡으면 끝까지 책임지는 신뢰의 기둥',
+      desc: '인증·세션·결제 같은 핵심 모듈을 묵묵히 5년째 지키는 타입. 변경 시 영향 범위를 항상 의식합니다.',
+      traits: ['책임감', '꼼꼼함', '신뢰', '자립'],
+      strengths: '맡은 코드의 모든 엣지 케이스를 머릿속에 가지고 있습니다. 새벽 장애 시 가장 먼저 호출되는 이유.',
+      weaknesses: '변화에 적응 시간이 필요하고, 새 기술 도입에 보수적일 수 있습니다.',
+      career: '시니어 백엔드, 인프라 엔지니어, 보안 엔지니어, 결제·인증 도메인 리드',
+      growth: '"안전한 변경 메커니즘"(피처 플래그·카나리 배포)을 도입해보세요. 보수성이 강점으로 바뀝니다.',
+      compat: '🚀 ENTJ 테크 리드 · 🌟 ENFJ 팀 빌더' },
+
+    ISFJ: { name: '신뢰의 데브옵스', emoji: '🌾', color: '#88b070',
+      tagline: '조용히 시스템을 살피며 모두의 새벽을 지키는 보호자',
+      desc: '모니터링 대시보드, 알림 채널, 백업 정책을 누구보다 잘 관리합니다. 누군가 알아주지 않아도 묵묵히.',
+      traits: ['세심함', '헌신', '안정', '실용'],
+      strengths: '작은 이상 징후를 가장 먼저 알아채고 조치합니다. 인프라 가용성의 보이지 않는 영웅.',
+      weaknesses: '자기 공로를 드러내지 못해 평가에서 손해 보고, 거절을 못해 과부하가 쌓입니다.',
+      career: 'SRE, 데브옵스 엔지니어, 인프라 운영, 모니터링·옵저버빌리티',
+      growth: '주간 리포트에 "내가 막아낸 장애 N건"을 명시적으로 적어두세요. 보이지 않는 가치를 보이게 만드는 일.',
+      compat: '⚡ ESTP 해커톤 챔피언 · 🎢 ESFP 데모 데이 스타' },
+
+    ESTJ: { name: '프로젝트 매니저', emoji: '🧱', color: '#8a7a6a',
+      tagline: '일정·범위·품질을 동시에 맞추는 실행의 달인',
+      desc: '간트차트·OKR·KPI가 자연스러운 언어. 약속한 것은 무조건 출시 일정에 맞춥니다.',
+      traits: ['실행력', '체계', '책임', '직설적'],
+      strengths: '복잡한 프로젝트를 작은 마일스톤으로 나눠 끝까지 끌고 갑니다. 마감을 지키는 팀의 핵심.',
+      weaknesses: '경직된 규칙에 매달려 유연성을 잃을 수 있고, 감정적 미묘함을 놓치기 쉽습니다.',
+      career: '엔지니어링 매니저, 프로젝트·프로그램 매니저, 스프린트 리드, 운영 리드',
+      growth: '"왜 이 일정이 정해졌나"를 팀과 공유하는 시간을 늘려보세요. 압박이 동의로 바뀝니다.',
+      compat: '🔬 INTP 분석가 · 🪶 ISFP UX 크리에이터' },
+
+    ESFJ: { name: '풀스택 코디네이터', emoji: '🎉', color: '#e87a90',
+      tagline: '프론트·백·디자인·QA를 매끄럽게 잇는 다리',
+      desc: '여러 직군 사이의 번역자 역할을 자연스럽게 합니다. PM·디자이너·QA와도 막힘없이 소통.',
+      traits: ['협업', '친화력', '실용', '조화'],
+      strengths: '여러 직군의 언어를 동시에 구사해 프로젝트 마찰을 줄입니다. 작은 팀의 강력한 멀티플레이어.',
+      weaknesses: '인정에 민감해 평가에 흔들리고, 한 가지 깊이 파는 작업에 갈증을 느낄 수 있습니다.',
+      career: '풀스택 엔지니어, 프로덕트 엔지니어, 스타트업 초기 멤버, 솔루션 엔지니어',
+      growth: '"내가 가장 잘하는 한 가지"를 정해 깊이 파는 분기 프로젝트를 가져보세요. 다재다능 + 강점이 시너지.',
+      compat: '🪶 INFP 크래프트맨 · 🐺 ISTP 시스템 트러블슈터' },
+
+    ISTP: { name: '시스템 트러블슈터', emoji: '🐺', color: '#6a9a8a',
+      tagline: '장애 발생 시 가장 침착하고 가장 유능한 정비공',
+      desc: 'tcpdump, strace, perf — 시스템 깊은 곳을 직접 보는 도구를 사랑합니다. 위기 상황에서 빛납니다.',
+      traits: ['실용', '차분함', '효율', '독립'],
+      strengths: '복잡한 장애의 원인을 빠르게 좁혀 들어갑니다. 새벽 3시 페이저가 울려도 가장 침착한 사람.',
+      weaknesses: '문서화·회고에 인색하고, 장기 계획보다 당장의 흥미를 따르기 쉽습니다.',
+      career: 'SRE, 시스템·네트워크 엔지니어, 시큐리티 엔지니어, 인시던트 리스폰더',
+      growth: '"이번 장애에서 배운 것" 한 줄을 매번 적어 공유해보세요. 본인의 영웅 모먼트가 팀 자산이 됩니다.',
+      compat: '🎉 ESFJ 풀스택 코디네이터 · 🌟 ENFJ 팀 빌더' },
+
+    ISFP: { name: 'UX 크리에이터', emoji: '🎨', color: '#b890d0',
+      tagline: '디테일 하나에 사용자 경험이 달라진다고 믿는 감성가',
+      desc: '버튼 그림자, 애니메이션 이징, 키보드 단축키 — 작은 인터랙션의 결을 다듬는 데서 행복을 느낍니다.',
+      traits: ['감성', '디테일', '진정성', '관찰'],
+      strengths: '프로덕트의 "느낌"을 끌어올리는 보이지 않는 디테일을 챙깁니다. 사용자 만족도의 숨은 동인.',
+      weaknesses: '갈등을 회피하다 디자인 의도가 묻히기 쉽고, 정량적 정당화에 약합니다.',
+      career: '프론트엔드 엔지니어, UX 엔지니어, 디자인 엔지니어, 모션·인터랙션 개발자',
+      growth: '"이 디테일이 왜 중요한가"를 한 문장 데이터로 표현하는 연습을 해보세요. 감각이 설득력으로.',
+      compat: '🧱 ESTJ 프로젝트 매니저 · 💡 ENTP 이노베이터' },
+
+    ESTP: { name: '해커톤 챔피언', emoji: '⚡', color: '#7ab85a',
+      tagline: '24시간 안에 데모 가능한 결과를 뽑아내는 스피드 러너',
+      desc: '계획 5분, 코드 20시간, 데모 슬라이드 10분. 짧은 사이클에서 최대치를 뽑아내는 능력자.',
+      traits: ['속도', '실행', '적응', '즉흥'],
+      strengths: '제한된 시간·자원에서 동작하는 결과를 만들어냅니다. 스타트업·MVP의 천재.',
+      weaknesses: '깊이 있는 사색이 어렵고, 인내가 필요한 장기 프로젝트에 빠르게 지칩니다.',
+      career: '스타트업 풀스택, 프로토타이퍼, 그로스 엔지니어, 해커톤·게임잼 단골',
+      growth: '"빠르게 만든 것 중 살아남은 것"의 패턴을 분석해보세요. 즉흥이 직관으로 진화합니다.',
+      compat: '🏗️ INTJ 아키텍트 · 🌾 ISFJ 신뢰의 데브옵스' },
+
+    ESFP: { name: '데모 데이 스타', emoji: '🎢', color: '#f570a0',
+      tagline: '무대를 즐기고 청중과 함께 호흡하는 발표의 달인',
+      desc: '코드만큼 사람도 즐깁니다. 회사 송년회·데모데이·웨비나에서 가장 빛나는 멤버.',
+      traits: ['활기', '사교', '즐거움', '현장감'],
+      strengths: '청중 분위기를 읽고 즉석에서 호흡을 맞춥니다. 외부 발표·세일즈 데모의 강자.',
+      weaknesses: '깊은 슬픔이나 정체된 환경에서 빠르게 시들 수 있고, 반복 작업에 약합니다.',
+      career: '디벨로퍼 어드보케이트, 세일즈 엔지니어, 데모·웨비나 호스트, 컨퍼런스 운영',
+      growth: '"무대 뒤"의 정제된 작업도 즐길 수 있는 루틴을 만들어보세요. 두 모드의 균형이 커리어를 길게 만듭니다.',
+      compat: '🧭 INFJ 개발 멘토 · 🌾 ISFJ 신뢰의 데브옵스' }
+  };
+
+  // ========== 상태 ==========
+  let currentQ = 0;
+  const scores = { E: 0, I: 0, N: 0, S: 0, T: 0, F: 0, J: 0, P: 0 };
+  const history = [];
+
+  const $ = (id) => document.getElementById(id);
+  const showScreen = (id) => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  $('btn-start').addEventListener('click', () => {
+    currentQ = 0;
+    history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    showScreen('screen-quiz');
+    renderQuestion();
+  });
+
+  function renderQuestion() {
+    const q = QUESTIONS[currentQ];
+    $('q-text').textContent = q.text;
+    $('progress-text').textContent = `${currentQ + 1} / ${QUESTIONS.length}`;
+    $('progress-fill').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+
+    const list = $('answer-list');
+    list.innerHTML = '';
+    [['a', q.a], ['b', q.b]].forEach(([key, [text, type]]) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.type = 'button';
+      btn.textContent = text;
+      btn.addEventListener('click', () => answer(type));
+      list.appendChild(btn);
+    });
+
+    $('btn-back').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
+  }
+
+  function answer(type) {
+    scores[type]++;
+    history.push(type);
+    currentQ++;
+    if (currentQ >= QUESTIONS.length) finish();
+    else renderQuestion();
+  }
+
+  $('btn-back').addEventListener('click', () => {
+    if (currentQ === 0) return;
+    currentQ--;
+    const lastType = history.pop();
+    if (lastType) scores[lastType]--;
+    renderQuestion();
+  });
+
+  function calculateMBTI() {
+    return (scores.E >= scores.I ? 'E' : 'I') +
+           (scores.N >= scores.S ? 'N' : 'S') +
+           (scores.T >= scores.F ? 'T' : 'F') +
+           (scores.J >= scores.P ? 'J' : 'P');
+  }
+
+  function finish() {
+    const mbti = calculateMBTI();
+    const r = RESULTS[mbti];
+    $('result-mbti').textContent = mbti;
+    $('result-name').textContent = r.name;
+    $('result-emoji').textContent = r.emoji;
+    $('result-tagline').textContent = r.tagline;
+    $('result-desc').textContent = r.desc;
+    $('result-strengths').textContent = r.strengths;
+    $('result-weaknesses').textContent = r.weaknesses;
+    $('result-career').textContent = r.career;
+    $('result-growth').textContent = r.growth;
+    $('result-compat').textContent = r.compat;
+    $('result-card').style.setProperty('--card-color', r.color);
+
+    const traits = $('result-traits');
+    traits.innerHTML = '';
+    r.traits.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'trait-pill';
+      span.textContent = t;
+      traits.appendChild(span);
+    });
+
+    const stats = $('result-stats');
+    stats.innerHTML = '';
+    [
+      ['E', '협업', 'I', '독립'],
+      ['N', '추상', 'S', '구체'],
+      ['T', '논리', 'F', '공감'],
+      ['J', '계획', 'P', '즉흥']
+    ].forEach(([l, ln, r, rn]) => {
+      const total = scores[l] + scores[r];
+      const lp = total > 0 ? Math.round((scores[l] / total) * 100) : 50;
+      const rp = 100 - lp;
+      const dominant = lp >= rp ? l : r;
+      const row = document.createElement('div');
+      row.className = 'stat-row';
+      row.innerHTML = `
+        <div class="stat-labels">
+          <span class="${dominant === l ? 'dominant' : ''}">${ln} ${lp}%</span>
+          <span class="${dominant === r ? 'dominant' : ''}">${rp}% ${rn}</span>
+        </div>
+        <div class="stat-bar">
+          <div class="stat-fill stat-l" style="width:${lp}%"></div>
+          <div class="stat-fill stat-r" style="width:${rp}%"></div>
+        </div>
+      `;
+      stats.appendChild(row);
+    });
+
+    history && (window.location.hash = mbti);
+    document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 개발자 MBTI`;
+
+    showScreen('screen-result');
+  }
+
+  $('btn-share-x').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    const r = RESULTS[mbti];
+    const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n개발자 MBTI 테스트로 알아보세요`;
+    const url = `https://devidles.com/test/dev-mbti/#${mbti}`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  });
+
+  $('btn-share-kakao').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    const url = `https://devidles.com/test/dev-mbti/#${mbti}`;
+    if (navigator.share) {
+      navigator.share({ title: `개발자 MBTI: ${RESULTS[mbti].name} (${mbti})`, text: RESULTS[mbti].tagline, url })
+        .catch(() => copyLink(url));
+    } else copyLink(url);
+  });
+
+  $('btn-share-copy').addEventListener('click', () => {
+    const mbti = calculateMBTI();
+    copyLink(`https://devidles.com/test/dev-mbti/#${mbti}`);
+  });
+
+  function copyLink(url) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => toast('링크가 복사되었습니다 ✓'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('링크가 복사되었습니다 ✓'); }
+      catch (e) { toast('복사 실패. URL을 직접 복사해주세요.'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.classList.add('show'), 10);
+    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2000);
+  }
+
+  $('btn-restart').addEventListener('click', () => {
+    currentQ = 0; history.length = 0;
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    window.location.hash = '';
+    document.title = '개발자 유형 MBTI 테스트 — 당신은 어떤 개발자?';
+    showScreen('screen-intro');
+  });
+
+  function checkHashResult() {
+    const hash = (window.location.hash || '').replace('#', '').toUpperCase();
+    if (RESULTS[hash]) {
+      Object.keys(scores).forEach(k => scores[k] = 0);
+      [...hash].forEach((ch) => {
+        scores[ch] = 4;
+        const opp = { E:'I', I:'E', N:'S', S:'N', T:'F', F:'T', J:'P', P:'J' }[ch];
+        scores[opp] = 0;
+      });
+      finish();
+    }
+  }
+  window.addEventListener('hashchange', checkHashResult);
+  checkHashResult();
+})();
+</script>
+</body>
+</html>
