@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://test.devidles.com/sitemap.xml
+Sitemap: https://devidles.com/test/sitemap.xml

@@ -7,32 +7,32 @@
 <meta name="description" content="12문항으로 알아보는 식물 MBTI. 16가지 식물 중 당신의 영혼과 가장 가까운 식물은? 무료, 1분 완료, 결과 SNS 공유." />
 <meta name="keywords" content="식물 MBTI, MBTI 테스트, 심리테스트, 식물 테스트, 다육이 영혼, 플랜테리어 테스트, 무료 심리테스트" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://test.devidles.com/plant-mbti/" />
-<link rel="alternate" hreflang="ko" href="https://test.devidles.com/plant-mbti/" />
+<link rel="canonical" href="https://devidles.com/test/plant-mbti/" />
+<link rel="alternate" hreflang="ko" href="https://devidles.com/test/plant-mbti/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content="식물 MBTI" />
-<meta property="og:url" content="https://test.devidles.com/plant-mbti/" />
+<meta property="og:url" content="https://devidles.com/test/plant-mbti/" />
 <meta property="og:title" content="식물 MBTI 테스트 — 당신은 어떤 식물?" />
 <meta property="og:description" content="12문항 1분 완료. 16가지 식물 중 당신의 영혼은?" />
-<meta property="og:image" content="https://test.devidles.com/og.png" />
+<meta property="og:image" content="https://devidles.com/test/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="식물 MBTI 테스트" />
 <meta name="twitter:description" content="당신은 어떤 식물의 영혼을 가지고 있을까? 12문항 1분 완료." />
-<meta name="twitter:image" content="https://test.devidles.com/og.png" />
+<meta name="twitter:image" content="https://devidles.com/test/og.png" />
 
 <meta name="theme-color" content="#15121e" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E🌿%3C/text%3E%3C/svg%3E" />
 
-<!-- Search Console / Naver verification (test.devidles.com용 토큰 발급 후 교체) -->
+<!-- Search Console / Naver verification (devidles.com/test용 토큰 발급 후 교체) -->
 <!-- <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_TOKEN" /> -->
 <!-- <meta name="naver-site-verification" content="REPLACE_WITH_NAVER_TOKEN" /> -->
 
-<!-- Kakao AdFit SDK (test.devidles.com 도메인으로 단위 ID 신규 발급 후 교체) -->
+<!-- Kakao AdFit SDK (devidles.com/test 도메인으로 단위 ID 신규 발급 후 교체) -->
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
 <link rel="stylesheet" href="../style.css" />
@@ -40,11 +40,11 @@
 <body>
 
 <header class="site-head">
-  <a href="/" class="logo">🧠 심리테스트</a>
+  <a href="/test/" class="logo">🧠 심리테스트</a>
   <nav>
-    <a href="/">테스트 목록</a>
-    <a href="https://plant.devidles.com" target="_blank" rel="noopener">🎮 게임</a>
-    <a href="/about/">소개</a>
+    <a href="/test/">테스트 목록</a>
+    <a href="/plant/" target="_blank" rel="noopener">🎮 게임</a>
+    <a href="/test/about/">소개</a>
   </nav>
 </header>
 
@@ -142,7 +142,7 @@
     <div class="cross-promo">
       <h3>🎮 식물을 직접 키워보고 싶다면?</h3>
       <p>씨앗에서 행성까지 — 무료 방치형 식물 진화 게임. 회원가입 없이 바로 시작.</p>
-      <a href="https://plant.devidles.com" class="btn-primary" target="_blank" rel="noopener">Idle Plant 플레이 →</a>
+      <a href="/plant/" class="btn-primary" target="_blank" rel="noopener">Idle Plant 플레이 →</a>
     </div>
 
     <button id="btn-restart" class="btn-restart">↻ 테스트 다시 하기</button>
@@ -150,7 +150,7 @@
 </main>
 
 <footer class="site-foot">
-  <p>© 2026 심리테스트 · <a href="/">테스트 목록</a> · <a href="https://plant.devidles.com" target="_blank" rel="noopener">게임</a> · <a href="/about/">소개</a> · <a href="/contact/">문의</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a></p>
+  <p>© 2026 심리테스트 · <a href="/test/">테스트 목록</a> · <a href="/plant/" target="_blank" rel="noopener">게임</a> · <a href="/test/about/">소개</a> · <a href="/test/contact/">문의</a> · <a href="/test/privacy/">개인정보처리방침</a> · <a href="/test/terms/">이용약관</a></p>
 </footer>
 
 <script>
@@ -452,14 +452,14 @@
     const mbti = calculateMBTI();
     const r = RESULTS[mbti];
     const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n식물 MBTI 테스트로 알아보세요`;
-    const url = `https://test.devidles.com/plant-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/plant-mbti/#${mbti}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   });
 
   $('btn-share-kakao').addEventListener('click', () => {
     // 카카오톡 공유는 SDK 필요 — SDK 미로드 시 링크 복사로 폴백
     const mbti = calculateMBTI();
-    const url = `https://test.devidles.com/plant-mbti/#${mbti}`;
+    const url = `https://devidles.com/test/plant-mbti/#${mbti}`;
     if (navigator.share) {
       navigator.share({
         title: `식물 MBTI: ${RESULTS[mbti].name} (${mbti})`,
@@ -473,7 +473,7 @@
 
   $('btn-share-copy').addEventListener('click', () => {
     const mbti = calculateMBTI();
-    copyLink(`https://test.devidles.com/plant-mbti/#${mbti}`);
+    copyLink(`https://devidles.com/test/plant-mbti/#${mbti}`);
   });
 
   function copyLink(url) {

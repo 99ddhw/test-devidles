@@ -3,23 +3,27 @@
   // 배포: npx wrangler deploy
   // 로컬 미리보기: npx wrangler dev
   //
-  // 첫 배포 시 wrangler가 Cloudflare 계정 인증을 요구합니다.
-  // 인증되면 자동으로 https://test-devidles.<account>.workers.dev 에 배포됩니다.
-  // 그 후 Cloudflare 대시보드에서 Custom Domain `test.devidles.com` 연결.
+  // 통합 도메인 라우팅: devidles.com/test/* 패턴으로 등록 — landing 워커의
+  // devidles.com/* 캐치올보다 더 구체적이라 Cloudflare specificity로 가로챈다.
+  // worker.js가 /test prefix를 strip한 뒤 ASSETS 바인딩에 위임.
 
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "test-devidles",
   "compatibility_date": "2026-05-08",
+  "main": "./worker.js",
 
-  // Worker 코드 없이 정적 자산만 서빙
+  "routes": [
+    { "pattern": "devidles.com/test/*", "zone_name": "devidles.com" }
+  ],
+
   // 모든 .html / .css / 이미지 등을 그대로 제공
   "assets": {
+    "binding": "ASSETS",
     "directory": "./",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   },
 
-  // 옵저버빌리티 (오류 추적용 무료 기본 옵션)
   "observability": {
     "enabled": true
   }
