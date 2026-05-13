@@ -32,9 +32,6 @@
 <!-- <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_TOKEN" /> -->
 <!-- <meta name="naver-site-verification" content="REPLACE_WITH_NAVER_TOKEN" /> -->
 
-<!-- Kakao AdFit SDK (devidles.com/test 도메인으로 단위 ID 신규 발급 후 교체) -->
-<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-
 <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
@@ -50,14 +47,6 @@
 
 <div class="page-title-strip">
   <span class="page-emoji">🌿</span> <strong>식물 MBTI</strong>
-</div>
-
-<!-- AdFit 상단 (결과 슬롯과 동일한 300×250 통일) -->
-<div class="ad-top">
-  <ins class="kakao_ad_area" style="display:none;"
-       data-ad-unit="DAN-v50YykpVXSCTcnIE"
-       data-ad-width="300"
-       data-ad-height="250"></ins>
 </div>
 
 <main>
@@ -129,14 +118,6 @@
       <button id="btn-share-x" class="btn-share">𝕏 트위터 공유</button>
       <button id="btn-share-kakao" class="btn-share">💬 카카오톡</button>
       <button id="btn-share-copy" class="btn-share">🔗 링크 복사</button>
-    </div>
-
-    <!-- AdFit 하단 -->
-    <div class="ad-mid">
-      <ins class="kakao_ad_area" style="display:none;"
-           data-ad-unit="DAN-oVnXITB2bPCGr368"
-           data-ad-width="300"
-           data-ad-height="250"></ins>
     </div>
 
     <div class="cross-promo">
@@ -440,11 +421,6 @@
     document.title = `나는 ${r.emoji} ${r.name} (${mbti}) — 식물 MBTI`;
 
     showScreen('screen-result');
-
-    // AdFit slot 새로 로드 트리거 (이미 로드된 슬롯은 재요청 안 됨, 신규 슬롯만)
-    if (window.adfit && window.adfit.display) {
-      try { window.adfit.display('DAN-oVnXITB2bPCGr368'); } catch (e) {}
-    }
   }
 
   // ========== 공유 ==========
