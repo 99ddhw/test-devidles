@@ -33,6 +33,12 @@
 <!-- <meta name="naver-site-verification" content="REPLACE_WITH_NAVER_TOKEN" /> -->
 
 <link rel="stylesheet" href="../style.css" />
+
+<!-- Kakao JS SDK — 카카오톡 공유용. JS 키는 Kakao Developers에서 발급 후 교체. -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js" crossorigin="anonymous"></script>
+<script>(function(){if(window.Kakao&&!Kakao.isInitialized()){try{Kakao.init('REPLACE_WITH_KAKAO_JS_KEY');}catch(e){}}})();</script>
+<!-- 공유 버튼 핸들러 (Twitter / Kakao / Instagram via html2canvas / Copy) -->
+<script src="../share.js" defer></script>
 </head>
 <body>
 
@@ -118,6 +124,7 @@
     <div class="share-row">
       <button id="btn-share-x" class="btn-share">𝕏 트위터 공유</button>
       <button id="btn-share-kakao" class="btn-share">💬 카카오톡</button>
+      <button id="btn-share-insta" class="btn-share">📷 인스타그램</button>
       <button id="btn-share-copy" class="btn-share">🔗 링크 복사</button>
     </div>
 
@@ -424,48 +431,18 @@
     showScreen('screen-result');
   }
 
-  // ========== 공유 ==========
-  $('btn-share-x').addEventListener('click', () => {
-    const mbti = calculateMBTI();
-    const r = RESULTS[mbti];
-    const text = `나는 ${r.emoji} ${r.name} (${mbti}) — "${r.tagline}"\n식물 MBTI 테스트로 알아보세요`;
-    const url = `https://devidles.com/test/plant-mbti/?r=${mbti}`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-  });
-
-  $('btn-share-kakao').addEventListener('click', () => {
-    // 카카오톡 공유는 SDK 필요 — SDK 미로드 시 링크 복사로 폴백
-    const mbti = calculateMBTI();
-    const url = `https://devidles.com/test/plant-mbti/?r=${mbti}`;
-    if (navigator.share) {
-      navigator.share({
-        title: `식물 MBTI: ${RESULTS[mbti].name} (${mbti})`,
-        text: RESULTS[mbti].tagline,
-        url
-      }).catch(() => copyLink(url));
-    } else {
-      copyLink(url);
-    }
-  });
-
-  $('btn-share-copy').addEventListener('click', () => {
-    const mbti = calculateMBTI();
-    copyLink(`https://devidles.com/test/plant-mbti/?r=${mbti}`);
-  });
-
-  function copyLink(url) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => toast('링크가 복사되었습니다 ✓'));
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = url;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); toast('링크가 복사되었습니다 ✓'); }
-      catch (e) { toast('복사 실패. URL을 직접 복사해주세요.'); }
-      document.body.removeChild(ta);
-    }
+  // ========== 공유 — share.js의 setup이 4개 버튼(X/카카오/인스타/복사)을 연결 ==========
+  function setupShare() {
+    if (!window.devidlesShare) { setTimeout(setupShare, 50); return; }
+    window.devidlesShare.setup({
+      path: 'plant-mbti',
+      label: '식물 MBTI 테스트',
+      results: RESULTS,
+      computeCode: calculateMBTI,
+      toast,
+    });
   }
+  setupShare();
 
   function toast(msg) {
     const t = document.createElement('div');
